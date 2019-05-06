@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./style.css";
-import Header from "../Header";
+import  Header from "../Header";
+import Footer from "../Footer";
+
 import backgroundImage1 from "../../../public/media/headerImage1.jpg";
 import backgroundImage2 from "../../../public/media/headerImage2.jpg";
 // import backgroundImage3 from "../../../public/media/headerImage3.jpg";
@@ -14,7 +16,7 @@ export default class Home extends React.Component {
     return (
       <div>
         <Header/>
-        <header id="home-section" style = {{ "background-image": `url(${backgroundImage3})`}}>
+        <header id="home-section" style = {{ "backgroundImage": `url(${backgroundImage3})`}}>
             <div className="dark-overlay">
               <div className="home-inner container">
                 <div className="row">
@@ -75,6 +77,7 @@ export default class Home extends React.Component {
               </div>
             </div>
           </header>
+          <Footer/>
         </div>
     );
   }
