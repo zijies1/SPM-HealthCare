@@ -4,7 +4,7 @@ class Header extends React.Component {
   // render
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="main-nav">
+      <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-light" id="main-nav">
         <div className="container">
           <a href="index.html" className="navbar-brand">Health Care</a>
           <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
