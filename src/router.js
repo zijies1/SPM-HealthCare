@@ -8,13 +8,13 @@ import NotFound from "./components/NotFound";
 
 // build the router
 const router = (
-  <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Home}/>
-      <Route path="/login" component={Login}/>
-      <Route path="*" component={NotFound}/>
-    </Route>
-  </Router>
+    <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Home}/>
+        <Route path="/login" component={Login}/>
+        <Route path="*" component={NotFound}/>
+      </Route>
+    </Router>
 );
 
 // export
