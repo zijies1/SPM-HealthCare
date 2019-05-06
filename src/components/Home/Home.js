@@ -1,12 +1,13 @@
 import React from "react";
 import style from "./style.css";
-// import Header from "../Header/Header";
+import Header from "../Header";
 // Home page component
 export default class Home extends React.Component {
   // render
   render() {
     return (
       <div className="page-home">
+        <Header/>
         <header id="home-section">
           <div className="dark-overlay">
             <div className="home-inner container">
