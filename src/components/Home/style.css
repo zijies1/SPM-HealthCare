@@ -1,5 +1,5 @@
 body {
-  background: #333;
+  background: #F5F5F5;
   color: #fff;
 }
 
@@ -64,3 +64,14 @@ body {
 
   .mb-resp {
     margin-bottom: 1rem; } }
+
+
+.well-block {
+    background-color: #fff;
+    border: 1px solid #e9e6e8;
+    padding: 40px;
+}
+
+.well-title {
+    margin-bottom: 40px;
+}

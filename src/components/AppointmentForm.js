@@ -1,66 +1,111 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { onUpdateField } from "../actions/index.js";
-
+import About from "./About";
 
 class AppointmentrForm extends React.Component {
   // render
   render() {
     return (
-      <form className="needs-validation mt-500" novalidate>
-        <div className="form-row">
-          <div className="col-md-4 mb-3">
-            <label for="validationTooltip01">First name</label>
-            <input type="text" className="form-control" id="validationTooltip01" placeholder="First name" value="Mark" required/>
-            <div className="valid-tooltip">
-              Looks good!
-            </div>
-          </div>
-          <div className="col-md-4 mb-3">
-            <label for="validationTooltip02">Last name</label>
-            <input type="text" className="form-control" id="validationTooltip02" placeholder="Last name" value="Otto" required/>
-            <div className="valid-tooltip">
-              Looks good!
-            </div>
-          </div>
-          <div className="col-md-4 mb-3">
-            <label for="validationTooltipUsername">Username</label>
-            <div className="input-group">
-              <div className="input-group-prepend">
-                <span className="input-group-text" id="validationTooltipUsernamePrepend">@</span>
-              </div>
-              <input type="text" className="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required/>
-              <div className="invalid-tooltip">
-                Please choose a unique and valid username.
-              </div>
-            </div>
-          </div>
+      <div>
+        <hr className="mt-100"/>
+        <div className="jumbotron text-dark text-center mb-0">
+          <h1 className="display-4">Hello, world!</h1>
+          <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+          <hr className="my-4"/>
+          <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+          <p className="lead">
+            <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+          </p>
         </div>
-        <div className="form-row">
-          <div className="col-md-6 mb-3">
-            <label for="validationTooltip03">City</label>
-            <input type="text" className="form-control" id="validationTooltip03" placeholder="City" required/>
-            <div className="invalid-tooltip">
-              Please provide a valid city.
-            </div>
-          </div>
-          <div className="col-md-3 mb-3">
-            <label for="validationTooltip04">State</label>
-            <input type="text" className="form-control" id="validationTooltip04" placeholder="State" required/>
-            <div className="invalid-tooltip">
-              Please provide a valid state.
-            </div>
-          </div>
-          <div className="col-md-3 mb-3">
-            <label for="validationTooltip05">Zip</label>
-            <input type="text" className="form-control" id="validationTooltip05" placeholder="Zip" required/>
-            <div className="invalid-tooltip">
-              Please provide a valid zip.
-            </div>
-          </div>
-        </div>
-        <button className="btn btn-primary" type="submit">Submit form</button>
-      </form>
+        <div className=" container text-dark py-5">
+               <div className="row">
+                   <div className="col-md-6">
+                       <div className="well-block">
+                           <div className="well-title">
+                               <h2>Questions? Book an Appointment</h2>
+                           </div>
+                           <form>
+                               <div className="row">
+                                   <div className="col-md-6">
+                                       <div className="form-group">
+                                           <label className="control-label" for="name">Name</label>
+                                           <input id="name" name="name" type="text" placeholder="Name" className="form-control input-md"/>
+                                       </div>
+                                   </div>
+                                   <div className="col-md-6">
+                                       <div className="form-group">
+                                           <label className="control-label" for="email">Email</label>
+                                           <input id="email" name="email" type="text" placeholder="E-Mail" className="form-control input-md"/>
+                                       </div>
+                                   </div>
+                                   <div className="col-md-6">
+                                       <div className="form-group">
+                                           <label className="control-label" for="date">Preferred Date</label>
+                                           <input id="date" name="date" type="text" placeholder="Preferred Date" className="form-control input-md"/>
+                                       </div>
+                                   </div>
+                                   <div className="col-md-6">
+                                       <div className="form-group">
+                                           <label className="control-label" for="time">Preferred Time</label>
+                                           <select id="time" name="time" className="form-control">
+                                               <option value="8:00 to 9:00">8:00 to 9:00</option>
+                                               <option value="9:00 to 10:00">9:00 to 10:00</option>
+                                               <option value="10:00 to 1:00">10:00 to 1:00</option>
+                                           </select>
+                                       </div>
+                                   </div>
+                                   <div className="col-md-12">
+                                       <div className="form-group">
+                                           <label className="control-label" for="appointmentfor">Appointment For</label>
+                                           <select id="appointmentfor" name="appointmentfor" className="form-control">
+                                               <option value="Service#1">Service#1</option>
+                                               <option value="Service#2">Service#2</option>
+                                               <option value="Service#3">Service#3</option>
+                                               <option value="Service#4">Service#4</option>
+                                           </select>
+                                       </div>
+                                   </div>
+                                   <div className="col-md-12">
+                                       <div className="form-group">
+                                           <button id="singlebutton" name="singlebutton" className="btn btn-default">Make An Appointment</button>
+                                       </div>
+                                   </div>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
+                   <div className="col-md-6">
+                       <div className="well-block">
+                           <div className="well-title">
+                               <h2>Why Appointment with Us</h2>
+                           </div>
+                           <div className="feature-block">
+                               <div className="feature feature-blurb-text">
+                                   <h4 className="feature-title">24/7 Hours Available</h4>
+                                   <div className="feature-content">
+                                       <p>Integer nec nisi sed mi hendrerit mattis. Vestibulum mi nunc, ultricies quis vehicula et, iaculis in magnestibulum.</p>
+                                   </div>
+                               </div>
+                               <div className="feature feature-blurb-text">
+                                   <h4 className="feature-title">Experienced Staff Available</h4>
+                                   <div className="feature-content">
+                                       <p>Aliquam sit amet mi eu libero fermentum bibendum pulvinar a turpis. Vestibulum quis feugiat risus. </p>
+                                   </div>
+                               </div>
+                               <div className="feature feature-blurb-text">
+                                   <h4 className="feature-title">Low Price & Fees</h4>
+                                   <div className="feature-content">
+                                       <p>Praesent eu sollicitudin nunc. Cras malesuada vel nisi consequat pretium. Integer auctor elementum nulla suscipit in.</p>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <About/>
+         </div>
     );
   }
 }
