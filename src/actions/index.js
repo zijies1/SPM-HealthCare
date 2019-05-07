@@ -19,6 +19,13 @@ export function logout() {
   };
 }
 
+export function onUpdateField(value, key){
+  return {
+    type: UPDATE_FIELD_AUTH,
+    key: key,
+    value
+  };
+}
 export function onChangeEmail( value){
   return {
     type: UPDATE_FIELD_AUTH,

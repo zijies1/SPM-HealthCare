@@ -7,8 +7,13 @@ import {
 
 const initialstate = {
   loggedIn:false,
-  email:"",
-  password:""
+  user: {
+    name:"",
+    homeAddress:"",
+    phoneNumber:"",
+    email:"",
+    password:""
+  }
 };
 
 
@@ -22,7 +27,7 @@ export default (state =initialstate, action) => {
       return{ ...state, loggedIn:false };
     case UPDATE_FIELD_AUTH:
       console.log(action.key,action.value);
-      return { ...state, [action.key]: action.value };
+      return { ...state, user: {...state.user,[action.key]: action.value}};
     default:
       return state;
   }

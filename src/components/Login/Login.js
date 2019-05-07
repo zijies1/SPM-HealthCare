@@ -65,7 +65,7 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ auth:state.auth });
+const mapStateToProps = state => ({ auth:state.auth.user });
 
 
 export default connect(mapStateToProps, {onSubmit,onChangeEmail,onChangePassword})(Login);

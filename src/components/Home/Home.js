@@ -4,6 +4,7 @@ import Header from "../Header";
 import About from "../About";
 import Footer from "../Footer";
 import Expert from "../Expert";
+import { connect } from 'react-redux';
 
 import backgroundImage1 from "../../../public/media/headerImage1.jpg";
 import backgroundImage2 from "../../../public/media/headerImage2.jpg";
@@ -11,9 +12,22 @@ import expert1 from "../../../public/media/img/person1.jpg";
 import expert2 from "../../../public/media/img/person2.jpg";
 import expert3 from "../../../public/media/img/person3.jpg";
 import expert4 from "../../../public/media/img/person4.jpg";
+
+import { onUpdateField } from "../../actions/index.js";
+
+
 // import backgroundImage3 from "../../../public/media/headerImage3.jpg";
 // Home page component
 class Home extends React.Component {
+
+  constructor() {
+    super();
+    this.changeName = ev => this.props.onChangeEmail(ev.target.value,"name");
+    this.changeHomeAddress = ev => this.props.onChangeHomeAddress(ev.target.value,"homeAddress");
+    this.changePhoneNumber = ev => this.props.onChangePhoneNumber(ev.target.value,"phoneNumber");
+    this.changeEmail = ev => this.props.onChangeEmail(ev.target.value,"email");
+    this.changePassword = ev => this.props.onChangePassword(ev.target.value,"password");
+  }
   // render
   render() {
     // var backgroundImage1 = "../../../public/media/headerImage1.jpg";
@@ -90,13 +104,39 @@ class Home extends React.Component {
                         <p>Please fill out this form to register</p>
                         <form>
                           <div className="form-group">
-                            <input type="email" className="form-control form-control-lg" placeholder="Email"/>
+                            <input
+                              type="text" className="form-control form-control-lg"
+                              placeholder="Name"
+                              value={this.props.user.name} onChange={this.changeName}
+                            />
                           </div>
                           <div className="form-group">
-                            <input type="password" className="form-control form-control-lg" placeholder="Password"/>
+                            <input
+                              type="text" className="form-control form-control-lg"
+                              placeholder="Phone Number"
+                              value={this.props.user.phoneNumber} onChange={this.changePhoneNumber}
+                            />
                           </div>
                           <div className="form-group">
-                            <input type="password" className="form-control form-control-lg" placeholder="Confirm Password"/>
+                            <input
+                              type="text" className="form-control form-control-lg"
+                              placeholder="Home Address"
+                              value={this.props.user.homeAddress} onChange={this.changeHomeAddress}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <input
+                              type="email" className="form-control form-control-lg"
+                              placeholder="Email"
+                              value={this.props.user.email} onChange={this.changeEmail}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <input
+                              type="password" className="form-control form-control-lg"
+                              placeholder="Password"
+                              value={this.props.user.password} onChange={this.changePassword}
+                            />
                           </div>
                           <input type="submit" value="Submit" className="btn btn-outline-light"/>
                         </form>
@@ -138,4 +178,7 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({ user:state.auth.user });
+
+
+export default connect(mapStateToProps,null)(Home);
