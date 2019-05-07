@@ -12,7 +12,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  min-height: 780px;
+  min-height: 740px;
 }
 
 #home-section .dark-overlay {
@@ -20,7 +20,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 780px;
+  min-height: 740px;
   background: rgba(0, 0, 0, 0.7);
 }
 

@@ -4,6 +4,7 @@ import Header from "../Header";
 import About from "../About";
 import Footer from "../Footer";
 import Expert from "../Expert";
+import RegisterForm from "../RegisterForm";
 import { connect } from 'react-redux';
 
 import backgroundImage1 from "../../../public/media/headerImage1.jpg";
@@ -22,11 +23,7 @@ class Home extends React.Component {
 
   constructor() {
     super();
-    this.changeName = ev => this.props.onChangeEmail(ev.target.value,"name");
-    this.changeHomeAddress = ev => this.props.onChangeHomeAddress(ev.target.value,"homeAddress");
-    this.changePhoneNumber = ev => this.props.onChangePhoneNumber(ev.target.value,"phoneNumber");
-    this.changeEmail = ev => this.props.onChangeEmail(ev.target.value,"email");
-    this.changePassword = ev => this.props.onChangePassword(ev.target.value,"password");
+
   }
   // render
   render() {
@@ -102,44 +99,7 @@ class Home extends React.Component {
                       <div className="card-body">
                         <h3>Sign Up Today</h3>
                         <p>Please fill out this form to register</p>
-                        <form>
-                          <div className="form-group">
-                            <input
-                              type="text" className="form-control form-control-lg"
-                              placeholder="Name"
-                              value={this.props.user.name} onChange={this.changeName}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <input
-                              type="text" className="form-control form-control-lg"
-                              placeholder="Phone Number"
-                              value={this.props.user.phoneNumber} onChange={this.changePhoneNumber}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <input
-                              type="text" className="form-control form-control-lg"
-                              placeholder="Home Address"
-                              value={this.props.user.homeAddress} onChange={this.changeHomeAddress}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <input
-                              type="email" className="form-control form-control-lg"
-                              placeholder="Email"
-                              value={this.props.user.email} onChange={this.changeEmail}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <input
-                              type="password" className="form-control form-control-lg"
-                              placeholder="Password"
-                              value={this.props.user.password} onChange={this.changePassword}
-                            />
-                          </div>
-                          <input type="submit" value="Submit" className="btn btn-outline-light"/>
-                        </form>
+                        <RegisterForm/>
                       </div>
                     </div>
                   </div>
