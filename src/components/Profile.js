@@ -30,38 +30,38 @@ class Profile extends React.Component {
           		                <div className="col-md-12">
           		                    <form>
                                         <div className="form-group row">
-                                          <label for="name" className="col-4 col-form-label" required="required">First Name*</label>
+                                          <label htmlFor="name" className="col-4 col-form-label" required="required">First Name*</label>
                                           <div className="col-8">
                                             <input id="name" name="name" placeholder="First Name" className="form-control here" type="text"/>
                                           </div>
                                         </div>
                                         <div className="form-group row">
-                                          <label for="lastname" className="col-4 col-form-label" required="required">Last Name*</label>
+                                          <label htmlFor="lastname" className="col-4 col-form-label" required="required">Last Name*</label>
                                           <div className="col-8">
                                             <input id="lastname" name="lastname" placeholder="Last Name" className="form-control here" type="text"/>
                                           </div>
                                         </div>
                                         <div className="form-group row">
-                                          <label for="email" className="col-4 col-form-label">Email*</label>
+                                          <label htmlFor="email" className="col-4 col-form-label">Email*</label>
                                           <div className="col-8">
                                             <input id="email" name="email" placeholder="Email" className="form-control here" required="required" type="text"/>
                                           </div>
                                         </div>
                                         <div className="form-group row">
-                                          <label for="address" className="col-4 col-form-label" required="required">Address*</label>
+                                          <label htmlFor="address" className="col-4 col-form-label" required="required">Address*</label>
                                           <div className="col-8">
                                             <input id="address" name="address" placeholder="Address" className="form-control here" type="text"/>
                                           </div>
                                         </div>
                                         <div className="form-group row">
-                                          <label for="phoneNumber" className="col-4 col-form-label" required="required">Phone Number*</label>
+                                          <label htmlFor="phoneNumber" className="col-4 col-form-label" required="required">Phone Number*</label>
                                           <div className="col-8">
                                             <input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" className="form-control here" type="text"/>
                                           </div>
                                         </div>
 
                                         <div className="form-group row">
-                                          <label for="newpass" className="col-4 col-form-label" required="required">New Password*</label>
+                                          <label htmlFor="newpass" className="col-4 col-form-label" required="required">New Password*</label>
                                           <div className="col-8">
                                             <input id="newpass" name="newpass" placeholder="New Password" className="form-control here" type="text"/>
                                           </div>

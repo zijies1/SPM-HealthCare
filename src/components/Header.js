@@ -5,6 +5,7 @@ class Header extends React.Component {
   // render
 
   renderLogin(){
+    console.log(this.props);
     if(this.props.auth.loggedIn){
       return(
         <li className="nav-item dropdown">

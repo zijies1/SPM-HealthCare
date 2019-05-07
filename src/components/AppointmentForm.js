@@ -21,25 +21,25 @@ class AppointmentrForm extends React.Component {
                                <div className="row">
                                    <div className="col-md-6">
                                        <div className="form-group">
-                                           <label className="control-label" for="name">Name</label>
+                                           <label className="control-label" htmlFor="name">Name</label>
                                            <input id="name" name="name" type="text" placeholder="Name" className="form-control input-md"/>
                                        </div>
                                    </div>
                                    <div className="col-md-6">
                                        <div className="form-group">
-                                           <label className="control-label" for="email">Email</label>
+                                           <label className="control-label" htmlFor="email">Email</label>
                                            <input id="email" name="email" type="text" placeholder="E-Mail" className="form-control input-md"/>
                                        </div>
                                    </div>
                                    <div className="col-md-6">
                                        <div className="form-group">
-                                           <label className="control-label" for="date">Preferred Date</label>
+                                           <label className="control-label" htmlFor="date">Preferred Date</label>
                                            <input id="date" name="date" type="text" placeholder="Preferred Date" className="form-control input-md"/>
                                        </div>
                                    </div>
                                    <div className="col-md-6">
                                        <div className="form-group">
-                                           <label className="control-label" for="time">Preferred Time</label>
+                                           <label className="control-label" htmlFor="time">Preferred Time</label>
                                            <select id="time" name="time" className="form-control">
                                                <option value="8:00 to 9:00">8:00 to 9:00</option>
                                                <option value="9:00 to 10:00">9:00 to 10:00</option>
@@ -49,7 +49,7 @@ class AppointmentrForm extends React.Component {
                                    </div>
                                    <div className="col-md-12">
                                        <div className="form-group">
-                                           <label className="control-label" for="appointmentfor">Appointment For</label>
+                                           <label className="control-label" htmlFor="appointmentfor">Appointment For</label>
                                            <select id="appointmentfor" name="appointmentfor" className="form-control">
                                                <option value="Service#1">Service#1</option>
                                                <option value="Service#2">Service#2</option>
@@ -105,4 +105,4 @@ class AppointmentrForm extends React.Component {
 const mapStateToProps = state => ({ user:state.auth.user });
 
 
-export default connect(mapStateToProps)(AppointmentrForm);
+export default connect(mapStateToProps,null)(AppointmentrForm);
