@@ -2,22 +2,14 @@ import React from "react";
 import { connect } from 'react-redux';
 import { onUpdateField } from "../actions/index.js";
 import About from "./About";
-
+import Banner from "./Banner";
 class AppointmentrForm extends React.Component {
   // render
   render() {
     return (
       <div>
         <hr className="mt-100"/>
-        <div className="jumbotron text-dark text-center mb-0">
-          <h1 className="display-4">Hello, world!</h1>
-          <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-          <hr className="my-4"/>
-          <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-          <p className="lead">
-            <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-          </p>
-        </div>
+        <Banner/>
         <div className=" container text-dark py-5">
                <div className="row">
                    <div className="col-md-6">

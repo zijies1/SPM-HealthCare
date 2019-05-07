@@ -12,7 +12,7 @@ class Header extends React.Component {
             Username
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a className="dropdown-item" href="#">Account</a>
+            <a className="dropdown-item" href="/profile">Account</a>
             <a className="dropdown-item" href="/appointment">Make An Appointment</a>
             <div className="dropdown-divider"></div>
             <a className="dropdown-item" href="/" onClick={this.props.logout} >Logout</a>
