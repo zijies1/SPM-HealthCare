@@ -2,7 +2,8 @@ import {
   UPDATE_FIELD_AUTH,
   LOGIN,
   LOGOUT,
-  LOGIN_PAGE_UNLOADED
+  LOGIN_PAGE_UNLOADED,
+  MAKE_APPOINTMENT
 } from '../constants/actionTypes';
 
 
@@ -26,6 +27,14 @@ export function onUpdateField(value, key){
     value
   };
 }
+
+export function onMakingAppointment(value){
+  return {
+    type: UPDATE_FIELD_AUTH,
+    value
+  };
+}
+
 export function onChangeEmail( value){
   return {
     type: UPDATE_FIELD_AUTH,

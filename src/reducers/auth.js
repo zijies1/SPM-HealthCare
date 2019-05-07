@@ -2,7 +2,8 @@ import {
   UPDATE_FIELD_AUTH,
   LOGIN,
   LOGOUT,
-  LOGIN_PAGE_UNLOADED
+  LOGIN_PAGE_UNLOADED,
+  MAKE_APPOINTMENT
 } from '../constants/actionTypes';
 
 const initialstate = {
@@ -12,7 +13,8 @@ const initialstate = {
     homeAddress:"",
     phoneNumber:"",
     email:"",
-    password:""
+    password:"",
+    appointments:[]
   }
 };
 
@@ -28,6 +30,8 @@ export default (state =initialstate, action) => {
     case UPDATE_FIELD_AUTH:
       console.log(action.key,action.value);
       return { ...state, user: {...state.user,[action.key]: action.value}};
+    case MAKE_APPOINTMENT:
+      return state;
     default:
       return state;
   }

@@ -1,8 +1,8 @@
 import React from "react";
 import style from "./style.css";
 import Header from "../Header";
-import About from "../About";
 import Footer from "../Footer";
+import About from "../About";
 import Expert from "../Expert";
 import RegisterForm from "../RegisterForm";
 import { connect } from 'react-redux';
