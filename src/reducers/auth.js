@@ -1,6 +1,7 @@
 import {
   UPDATE_FIELD_AUTH,
   LOGIN,
+  LOGOUT,
   LOGIN_PAGE_UNLOADED
 } from '../constants/actionTypes';
 
@@ -16,6 +17,9 @@ export default (state =initialstate, action) => {
     case LOGIN:
       console.log(state);
       return{ ...state, loggedIn:true };
+    case LOGOUT:
+      console.log(state);
+      return{ ...state, loggedIn:false };
     case UPDATE_FIELD_AUTH:
       console.log(action.key,action.value);
       return { ...state, [action.key]: action.value };

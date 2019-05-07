@@ -13,7 +13,7 @@ import expert3 from "../../../public/media/img/person3.jpg";
 import expert4 from "../../../public/media/img/person4.jpg";
 // import backgroundImage3 from "../../../public/media/headerImage3.jpg";
 // Home page component
-export default class Home extends React.Component {
+class Home extends React.Component {
   // render
   render() {
     // var backgroundImage1 = "../../../public/media/headerImage1.jpg";
@@ -137,3 +137,5 @@ export default class Home extends React.Component {
     );
   }
 }
+
+export default Home;

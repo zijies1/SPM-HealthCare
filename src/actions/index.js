@@ -1,6 +1,7 @@
 import {
   UPDATE_FIELD_AUTH,
   LOGIN,
+  LOGOUT,
   LOGIN_PAGE_UNLOADED
 } from '../constants/actionTypes';
 
@@ -9,6 +10,12 @@ export function onSubmit(router) {
   router.push('/');
   return {
     type: LOGIN,
+  };
+}
+
+export function logout() {
+  return {
+    type: LOGOUT,
   };
 }
 

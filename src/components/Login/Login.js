@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import style from "./style.css";
 import logo from "../../../public/media/logo.svg";
