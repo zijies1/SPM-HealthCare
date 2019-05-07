@@ -1,7 +1,5 @@
 import React from "react";
 import style from "./style.css";
-import Header from "../Header";
-import Footer from "../Footer";
 import About from "../About";
 import Expert from "../Expert";
 import RegisterForm from "../RegisterForm";
@@ -56,7 +54,6 @@ class Home extends React.Component {
     var backgroundImage3 = "https://www.hospitalityinhealthcare.com/wp-content/uploads/2017/03/1-WELCOME-IMAGE_medical-personnel-consult.jpg";
     return (
       <div>
-        <Header/>
         <header id="home-section" style = {{ "backgroundImage": `url(${backgroundImage3})`}}>
             <div className="dark-overlay">
               <div className="home-inner container">
@@ -130,9 +127,6 @@ class Home extends React.Component {
                 </div>
               </div>
             </section>
-
-
-          <Footer/>
         </div>
     );
   }

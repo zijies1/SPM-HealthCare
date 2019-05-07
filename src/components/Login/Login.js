@@ -14,8 +14,8 @@ import {
 // Home page component
 class Login extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.changeEmail = ev => this.props.onChangeEmail(ev.target.value);
     this.changePassword = ev => this.props.onChangePassword(ev.target.value);
     this.submitForm = () => ev => {
@@ -29,37 +29,37 @@ class Login extends React.Component {
 
     return (
       <div className="wrapper fadeInDown">
-      <div id="formContent">
+        <div id="formContent">
 
-        <div className="fadeIn first">
-          <img src={logo} id="icon" alt="User Icon" />
+          <div className="fadeIn first">
+            <img src={logo} id="icon" alt="User Icon" />
+          </div>
+
+          <form onSubmit={this.submitForm()}>
+            <input
+              type="text"
+              id="login"
+              className="fadeIn second"
+              name="login"
+              placeholder="login"
+              onChange={this.changeEmail}
+            />
+            <input
+              type="text"
+              id="password"
+              className="fadeIn third"
+              name="login"
+              placeholder="password"
+              onChange={this.changePassword}
+            />
+            <input type="submit" className="fadeIn fourth" value="Log In"/>
+          </form>
+
+          <div id="formFooter">
+            <a className="underlineHover" href="#">Forgot Password?</a>
+          </div>
+
         </div>
-
-        <form onSubmit={this.submitForm()}>
-          <input
-            type="text"
-            id="login"
-            className="fadeIn second"
-            name="login"
-            placeholder="login"
-            value={this.props.email} onChange={this.changeEmail}
-          />
-          <input
-            type="text"
-            id="password"
-            className="fadeIn third"
-            name="login"
-            placeholder="password"
-            value={this.props.password} onChange={this.changePassword}
-          />
-          <input type="submit" className="fadeIn fourth" value="Log In"/>
-        </form>
-
-        <div id="formFooter">
-          <a className="underlineHover" href="#">Forgot Password?</a>
-        </div>
-
-      </div>
     </div>
     );
   }
