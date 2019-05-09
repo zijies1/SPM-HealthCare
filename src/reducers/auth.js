@@ -23,9 +23,11 @@ export default (state =initialstate, action) => {
   switch (action.type) {
     case LOGIN:
       console.log(state);
+      localStorage.setItem('token', "token1");
       return{ ...state, loggedIn:true };
     case LOGOUT:
       console.log(state);
+      localStorage.setItem('token', "");
       return{ ...state, loggedIn:false };
     case UPDATE_FIELD_AUTH:
       console.log(action.key,action.value);
