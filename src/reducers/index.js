@@ -6,6 +6,6 @@ import auth from "./auth.js";
 export const reducers = combineReducers({
   routing: routerReducer,
   form: formReducer,
-  auth: auth
+  auth: auth,
   // your reducer here
 });

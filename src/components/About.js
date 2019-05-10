@@ -22,7 +22,7 @@ export default class ABOUT extends React.Component {
                   <div className="card-header">
                     <h5 className="mb-0 text-secondary">
                       <div href="#collapse1" data-toggle="collapse" data-parent="#accordion">
-                        <i className="fas fa-arrow-circle-down"></i> Professionalism
+                        <i className="fas fa-arrow-circle-down"></i> 24/7 Hours Available
                       </div>
                     </h5>
                   </div>
@@ -41,7 +41,7 @@ export default class ABOUT extends React.Component {
                   <div className="card-header text-secondary">
                     <h5 className="mb-0">
                       <div href="#collapse2" data-toggle="collapse" data-parent="#accordion">
-                        <i className="fas fa-arrow-circle-down"></i> Our Brand
+                        <i className="fas fa-arrow-circle-down"></i> Experienced Staff Available
                       </div>
                     </h5>
                   </div>
@@ -60,7 +60,7 @@ export default class ABOUT extends React.Component {
                   <div className="card-header text-secondary">
                     <h5 className="mb-0">
                       <div href="#collapse3" data-toggle="collapse" data-parent="#accordion">
-                        <i className="fas fa-arrow-circle-down"></i> History
+                        <i className="fas fa-arrow-circle-down"></i> Low Price & Fees
                       </div>
                     </h5>
                   </div>

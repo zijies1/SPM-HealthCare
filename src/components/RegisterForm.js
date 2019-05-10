@@ -1,23 +1,32 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { onUpdateField } from "../actions/index.js";
+import { onUpdateFieldResgiter, onRegister } from "../actions/index.js";
 
 
 class RegisterForm extends React.Component {
 
   constructor() {
     super();
-    this.changeName = ev => this.props.onUpdateField(ev.target.value,"name");
-    this.changeHomeAddress = ev => this.props.onUpdateField(ev.target.value,"homeAddress");
-    this.changePhoneNumber = ev => this.props.onUpdateField(ev.target.value,"phoneNumber");
-    this.changeEmail = ev => this.props.onUpdateField(ev.target.value,"email");
-    this.changePassword = ev => this.props.onUpdateField(ev.target.value,"password");
+    this.changeName = ev => this.props.onUpdateFieldResgiter(ev.target.value,"name");
+    this.changeHomeAddress = ev => this.props.onUpdateFieldResgiter(ev.target.value,"homeAddress");
+    this.changePhoneNumber = ev => this.props.onUpdateFieldResgiter(ev.target.value,"phoneNumber");
+    this.changeEmail = ev => this.props.onUpdateFieldResgiter(ev.target.value,"email");
+    this.changePassword = ev => this.props.onUpdateFieldResgiter(ev.target.value,"password");
+    this.submitForm = () => ev => {
+      ev.preventDefault();
+      console.log(this.props.user.email);
+      this.props.onRegister({
+        email:this.props.user.email,
+        password:this.props.user.password
+      });
+    };
   }
 
   // render
   render() {
+    console.log("home register",this.props.user);
     return (
-      <form>
+      <form onSubmit={this.submitForm()}>
         <div className="form-row">
           <div className="form-group col-md-6">
             <input
@@ -61,7 +70,7 @@ class RegisterForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ user:state.auth.user });
+const mapStateToProps = state => ({ user:state.auth.registerUser });
 
 
-export default connect(mapStateToProps,{onUpdateField})(RegisterForm);
+export default connect(mapStateToProps,{onUpdateFieldResgiter,onRegister})(RegisterForm);

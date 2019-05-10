@@ -12,11 +12,9 @@ import { onUpdateField } from "../../actions/index.js";
 // import backgroundImage3 from "../../../public/media/headerImage3.jpg";
 // Home page component
 class Home extends React.Component {
+
   // render
   render() {
-    // var backgroundImage1 = "../../../public/media/headerImage1.jpg";
-    // var backgroundImage2 = "../../../public/media/headerImage2.jpg";
-
     var backgroundImage3 = "https://www.hospitalityinhealthcare.com/wp-content/uploads/2017/03/1-WELCOME-IMAGE_medical-personnel-consult.jpg";
     return (
       <div>
@@ -77,8 +75,7 @@ class Home extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => ({ user:state.auth.user });
+const mapStateToProps = state => ({ firebase:state.auth});
 
 
 export default connect(mapStateToProps,null)(Home);
