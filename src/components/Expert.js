@@ -10,7 +10,7 @@ export default class Expert extends React.Component {
             <div className="card-body">
               <img src={img} alt="" className="img-fluid rounded-circle w-50 mb-3"/>
               <h3>{name}</h3>
-              <h5 className="text-muted">{position}</h5>
+              <h5 className="text-muted mt-2">{position}</h5>
               <p>{description}</p>
               <div className="d-flex justify-content-center">
                 <div className="p-4">

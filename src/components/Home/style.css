@@ -8,6 +8,10 @@ body {
   opacity: 1;
 }
 
+#home-banner{
+  opacity: 0.5;
+}
+
 #home-section {
   background-repeat: no-repeat;
   background-size: cover;
@@ -74,4 +78,8 @@ body {
 
 .well-title {
     margin-bottom: 40px;
+}
+
+#banner-jum{
+  background-color:rgba(255, 255, 255, 0.5);
 }

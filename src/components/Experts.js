@@ -1,35 +1,31 @@
 import React from "react";
 import Expert from "./Expert";
-import expert1 from "../../public/media/img/person1.jpg";
-import expert2 from "../../public/media/img/person2.jpg";
-import expert3 from "../../public/media/img/person3.jpg";
-import expert4 from "../../public/media/img/person4.jpg";
+import expert1 from "../../public/media/img/d1.jpeg";
+import expert2 from "../../public/media/img/d2.jpeg";
+import expert3 from "../../public/media/img/d3.jpeg";
+import expert4 from "../../public/media/img/d4.jpeg";
 
 export default class Experts extends React.Component {
   // render
   render() {
     var one = {
-      name:"Susan Williams",
-      positio:"doctor",
-      description:" This is expert1 ",
+      name:"Robert Koch",
+      position:"Oral care",
       img:expert1
     };
     var two = {
-      name:"Susan Williams",
-      positio:"doctor",
-      description:" This is expert2 ",
+      name:"Henry Gray",
+      position:"Eye care",
       img:expert2
     };
     var three = {
       name:"John Doe",
-      positio:"doctor",
-      description:" This is expert3 ",
+      position:"Mental health",
       img:expert3
     };
     var four = {
-      name:"Kevin Swanson",
-      positio:"doctor",
-      description:" This is expert4 ",
+      name:"Theodor Billroth",
+      position:"Rehabilitation care",
       img:expert4
     };
     return (
@@ -39,7 +35,7 @@ export default class Experts extends React.Component {
             <div className="col">
               <div className="info-header mb-5 text-secondary">
                   <h1 className=" pb-3">
-                    Meet The Experts
+                    Meet The Professionals
                   </h1>
                   <p className="lead">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias laborum numquam aperiam dolores a porro!

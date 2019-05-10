@@ -257,6 +257,9 @@ input[type=text]:placeholder {
   width:60%;
 }
 
+#login-logo:hover{
+  cursor:pointer;
+}
 /* #main-nav {
    display: none !important;
 }

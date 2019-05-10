@@ -3,16 +3,23 @@ import React from "react";
 export default class Expert extends React.Component {
   // render
   render() {
+    var backgroundImage3 = "https://www.hospitalityinhealthcare.com/wp-content/uploads/2017/03/1-WELCOME-IMAGE_medical-personnel-consult.jpg";
     return (
-      <div className="jumbotron text-dark text-center mb-50">
-        <h1 className="display-4">Hello, world!</h1>
-        <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr className="my-4"/>
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <p className="lead">
-          <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </p>
-      </div>
+      <header id="banner-section" style = {{ "backgroundImage": `url(${backgroundImage3})`}}>
+          <div className="dark-overlay">
+              <div className="jumbotron text-dark text-center mb-50" id="banner-jum">
+                <h1 className="display-6">
+                  Home / Account / {this.props.section}
+                </h1>
+                <hr className="my-2"/>
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <p className="lead">
+                  <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                </p>
+            </div>
+          </div>
+        </header>
+
     );
   }
 }

@@ -9,8 +9,8 @@ class AppointmentrForm extends React.Component {
     return (
       <div>
         <hr className="mt-100"/>
-        <Banner/>
-        <div className=" container text-dark py-5">
+        <Banner section = "Appointment"/>
+        <div className=" container text-dark pb-5">
                <div className="row">
                    <div className="col-md-6">
                        <div className="well-block">
@@ -60,7 +60,7 @@ class AppointmentrForm extends React.Component {
                                    </div>
                                    <div className="col-md-12">
                                        <div className="form-group">
-                                           <button id="singlebutton" name="singlebutton" className="btn btn-default">Make An Appointment</button>
+                                           <button id="singlebutton" name="singlebutton" className="btn btn-primary">Make An Appointment</button>
                                        </div>
                                    </div>
                                </div>
@@ -96,7 +96,6 @@ class AppointmentrForm extends React.Component {
                    </div>
                </div>
            </div>
-           <About/>
          </div>
     );
   }

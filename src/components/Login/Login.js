@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import style from "./style.css";
-import logo from "../../../public/media/logo.svg";
+import logo from "../../../public/media/img/logo1.svg";
 import { onSubmit,
          onChangeEmail,
          onChangePassword } from "../../actions/index.js";
@@ -22,6 +22,9 @@ class Login extends React.Component {
       ev.preventDefault();
       this.props.onSubmit(this.props.router);
     };
+    this.backHome = () =>{
+      this.props.router.push("/");
+    };
   }
 
   // render
@@ -31,8 +34,8 @@ class Login extends React.Component {
       <div className="wrapper fadeInDown">
         <div id="formContent">
 
-          <div className="fadeIn first">
-            <img src={logo} id="icon" alt="User Icon" />
+          <div className="fadeIn first mb-2 mt-1" id="login-logo">
+            <img src={logo} id="icon" alt="User Icon" onClick={this.backHome}/>
           </div>
 
           <form onSubmit={this.submitForm()}>

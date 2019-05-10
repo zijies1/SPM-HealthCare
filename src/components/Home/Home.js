@@ -25,9 +25,9 @@ class Home extends React.Component {
               <div className="home-inner container">
                 <div className="row">
                   <div className="col-lg-8 d-none d-lg-block">
-                    <h1 className="display-4">Build
-                      <strong>social profiles</strong> and gain revenue
-                      <strong>profits</strong>
+                    <h1 className="display-4">Better
+                      <strong> Health</strong> Better
+                      <strong> Life</strong>
                     </h1>
                     <div className="d-flex">
                       <div className="p-4 align-self-start">

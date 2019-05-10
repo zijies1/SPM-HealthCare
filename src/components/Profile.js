@@ -6,7 +6,8 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-        <Banner/>
+        <hr className="mt-100"/>
+        <Banner section = "Account"/>
         <div className="mb-5">
           <div className="container text-dark">
           	<div className="row">
