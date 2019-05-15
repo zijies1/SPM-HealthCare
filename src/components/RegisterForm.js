@@ -14,11 +14,7 @@ class RegisterForm extends React.Component {
     this.changePassword = ev => this.props.onUpdateFieldResgiter(ev.target.value,"password");
     this.submitForm = () => ev => {
       ev.preventDefault();
-      console.log(this.props.user.email);
-      this.props.onRegister({
-        email:this.props.user.email,
-        password:this.props.user.password
-      });
+      this.props.onRegister(this.props.user);
     };
   }
 
@@ -32,7 +28,7 @@ class RegisterForm extends React.Component {
             <input
               type="email" className="form-control form-control-lg"
               placeholder="Email"
-              value={this.props.user.email} onChange={this.changeEmail}
+              value={this.props.user.email} onChange={this.changeEmail.bind(this)}
             />
           </div>
          <div className="form-group col-md-6">

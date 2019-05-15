@@ -19,7 +19,7 @@ const initialstate = {
     appointments:[]
   },
   registerUser:{
-    name:"",
+    name:"wd",
     homeAddress:"",
     phoneNumber:"",
     email:"",
@@ -31,18 +31,14 @@ const initialstate = {
 export default (state =initialstate, action) => {
   switch (action.type) {
     case LOGIN:
-      console.log(state);
       localStorage.setItem('token', "token1");
       return{ ...state, loggedIn:true };
     case LOGOUT:
-      console.log(state);
       localStorage.setItem('token', "");
       return{ ...state, loggedIn:false };
     case UPDATE_FIELD_AUTH:
-      console.log(UPDATE_FIELD_AUTH,action.key,action.value);
       return { ...state, user: {...state.user,[action.key]: action.value}};
     case UPDATE_FIELD_AUTH_REGISTER:
-      console.log(UPDATE_FIELD_AUTH_REGISTER,action.key,action.value);
       return { ...state, registerUser: {...state.registerUser,[action.key]: action.value}};
     case MAKE_APPOINTMENT:
       return state;

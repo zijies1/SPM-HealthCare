@@ -17,16 +17,9 @@ export function onSubmit(router) {
 }
 
 export function onRegister(user) {
-  firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-  .then(authUser => {
-       console.log(authUser);
-      })
-      .catch(error => {
-        console.log(error);
-      });
   return {
     type: REGISTER,
-    payload:user
+    payload:firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
   };
 }
 
