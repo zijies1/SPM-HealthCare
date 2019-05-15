@@ -1,24 +1,28 @@
 import React from "react";
-import "../stylesheets/main.scss";
-import Header from "./Header";
-import Footer from "./Footer";
-// app component
+import "./style.css";
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import Home from "./Home";
+import MainContainer from "./MainContainer";
+import Login from "./Login";
+import NotFound from "./NotFound";
+import AppointmentForm from "./AppointmentForm";
+import Profile from "./Profile";
+
 export default class App extends React.Component {
-  // render
   render() {
-    if(this.props.children.props.route.path == "/login"){
-      return(
-        <div>
-            {this.props.children}
-        </div>
-      )
-    }
     return (
-      <div>
-        <Header/>
-          {this.props.children}
-        <Footer/>
-      </div>
+      <Router>
+          <div>
+            <Route exact path="/" component={Home}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/appointment" component={AppointmentForm}/>
+          </div>
+      </Router>
     );
   }
 }
+
+// <Route path="/login" component={Login}/>
+// <Route path="/appointment" component={AppointmentForm}/>
+// <Route path="/profile" component={Profile}/>
+// <Route path="*" component={NotFound}/>

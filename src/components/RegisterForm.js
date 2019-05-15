@@ -70,7 +70,10 @@ class RegisterForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ user:state.auth.registerUser });
+const mapStateToProps = state => ({
+  user:state.auth.registerUser,
+  firebase:state.firebase
+});
 
 
 export default connect(mapStateToProps,{onUpdateFieldResgiter,onRegister})(RegisterForm);

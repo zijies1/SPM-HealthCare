@@ -1,13 +1,10 @@
 import React from "react";
 import style from "./style.css";
-import About from "../About";
-import Experts from "../Experts";
-import RegisterForm from "../RegisterForm";
-import { connect } from 'react-redux';
-import backgroundImage1 from "../../../public/media/headerImage1.jpg";
-import backgroundImage2 from "../../../public/media/headerImage2.jpg";
-import { onUpdateField } from "../../actions/index.js";
-
+import About from "./About";
+import Experts from "./Experts";
+import RegisterForm from "./RegisterForm";
+import Header from "./Header";
+import Footer from "./Footer";
 
 // import backgroundImage3 from "../../../public/media/headerImage3.jpg";
 // Home page component
@@ -18,6 +15,7 @@ class Home extends React.Component {
     var backgroundImage3 = "https://www.hospitalityinhealthcare.com/wp-content/uploads/2017/03/1-WELCOME-IMAGE_medical-personnel-consult.jpg";
     return (
       <div>
+        <Header/>
         <header id="home-section" style = {{ "backgroundImage": `url(${backgroundImage3})`}}>
             <div className="dark-overlay">
               <div className="home-inner container">
@@ -70,12 +68,10 @@ class Home extends React.Component {
           </header>
           <Experts/>
           <About/>
-
+          <Footer/>
         </div>
     );
   }
 }
-const mapStateToProps = state => ({ firebase:state.auth});
 
-
-export default connect(mapStateToProps,null)(Home);
+export default Home;

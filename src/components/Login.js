@@ -1,15 +1,15 @@
 import React from "react";
 import { connect } from 'react-redux';
 import style from "./style.css";
-import logo from "../../../public/media/img/logo1.svg";
+import logo from "../media/img/logo1.svg";
 import { onSubmit,
          onChangeEmail,
-         onChangePassword } from "../../actions/index.js";
+         onChangePassword } from "../actions/index.js";
 import {
   UPDATE_FIELD_AUTH,
   LOGIN,
   LOGIN_PAGE_UNLOADED
-} from '../../constants/actionTypes';
+} from '../constants/actionTypes';
 
 // Home page component
 class Login extends React.Component {

@@ -1,58 +1,54 @@
-// http://webpack.github.io/docs/configuration.html
-// http://webpack.github.io/docs/webpack-dev-server.html
-var app_root = 'src'; // the app root folder: src, src_users, etc
-var path = require('path');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require('path');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  app_root: app_root, // the app root folder, needed by the other webpack configs
-  entry: [
-    // http://gaearon.github.io/react-hot-loader/getstarted/
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    'babel-polyfill',
-    __dirname + '/' + app_root + '/index.js',
-  ],
+  entry: './src/index.js',
   output: {
-    path: __dirname + '/public/js',
-    publicPath: 'js/',
     filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public/dist'),
+    publicPath: '/'
   },
   module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
-        exclude: /node_modules/,
-      },
-      {
-        // https://github.com/jtangelder/sass-loader
-        test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
-      },
-      {
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-      },
-      //image loader
-      {
-          test: /\.(png|jp(e*)g|svg)$/,
-          loader: 'url-loader',
-          options: {
-              limit: 8000, // Convert images < 8kb to base64 strings
-              name: 'images/[hash]-[name].[ext]'
-          }
-      }
-    ],
+   rules: [
+     {
+       test: /\.js$/,
+       exclude: /node_modules/,
+       use: {
+         loader: "babel-loader"
+       }
+     },
+     {
+       test: /\.html$/,
+       use: [
+         {
+           loader: "html-loader"
+         }
+       ]
+     },
+     {
+         test: /\.(png|jp(e*)g|svg)$/,
+         use: [{
+             loader: 'url-loader',
+             options: {
+                 limit: 8000, // Convert images < 8kb to base64 strings
+                 name: 'images/[hash]-[name].[ext]'
+             }
+         }]
+     },
+     //css loader
+     {
+       test: /\.css$/,
+       use: [ 'style-loader', 'css-loader' ]
+     },
+   ]
   },
   devServer: {
-    contentBase: __dirname + '/public',
+    historyApiFallback: true,
   },
   plugins: [
-    new CleanWebpackPlugin(['css/main.css', 'js/bundle.js'], {
-      root: __dirname + '/public',
-      verbose: true,
-      dry: false, // true for simulation
-    }),
-  ],
+    new HtmlWebPackPlugin({
+      template: "./public/index.html",
+      filename: "./index.html"
+    })
+  ]
 };
