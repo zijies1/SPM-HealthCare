@@ -9,7 +9,8 @@ import {
   LOGIN_PAGE_UNLOADED,
   MAKE_APPOINTMENT,
   SHOW_MODAL,
-  UPDATE_FIELD_APPOINTMENT
+  UPDATE_FIELD_APPOINTMENT,
+  CHANGE_PROFILE_VIEW
 } from '../constants/actionTypes';
 import firebase from "../reducers/firebase.js";
 
@@ -93,6 +94,13 @@ export function onMakeAppointment(appmt){
 export function onModal(value){
   return {
     type: SHOW_MODAL,
+    payload:value
+  };
+}
+
+export function onChangeProfileView(value){
+  return {
+    type: CHANGE_PROFILE_VIEW,
     payload:value
   };
 }

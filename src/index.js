@@ -15,6 +15,7 @@ if(!store.getState().auth.loggedIn){
     if (user) {
       store.dispatch({ type: ASYNC_START});
       firebase.database().ref('/users/' + user.uid).once('value').then((snapshot)=> {
+        console.log(snapshot.val());
         store.dispatch({ type: LOGIN, payload:snapshot.val()});
         store.dispatch({ type: ASYNC_END });
       }).catch(error =>{

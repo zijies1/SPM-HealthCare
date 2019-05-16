@@ -7,6 +7,7 @@ import {
   REGISTER,
   UPDATE_PASSWORD,
   CLEAN_REGISTER_FIELDS,
+  MAKE_APPOINTMENT,
   SHOW_MODAL
 } from './constants/actionTypes';
 import firebase from "./reducers/firebase";
@@ -59,6 +60,9 @@ const promiseMiddleware = store => next => action => {
          action.payload = null;
          store.dispatch({ type: ASYNC_END});
          store.dispatch(action);
+         if(action.type===MAKE_APPOINTMENT){
+           store.dispatch({ type:MAKE_APPOINTMENT, payload:{show:true,msg:"Success!"} });
+         }
        }
        setTimeout(10);
       },
