@@ -78,10 +78,15 @@ export function onUpdateFieldResgiter(value, key){
   };
 }
 
-export function onMakeAppointment(value){
+export function onMakeAppointment(appmt){
+  var uid = firebase.auth().currentUser.uid;
+  var newPostKey = firebase.database().ref().child('posts').push().key;
+  var updates = {};
+  updates['/appointments/' + newPostKey] = appmt;
+  updates['users/' + uid + '/appointments/' + newPostKey] = appmt;
   return {
     type: MAKE_APPOINTMENT,
-    value
+    payload:firebase.database().ref().update(updates)
   };
 }
 

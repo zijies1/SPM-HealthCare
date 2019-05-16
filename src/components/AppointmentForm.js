@@ -22,7 +22,7 @@ class AppointmentForm extends React.Component {
     }
     this.changeTime = ev => this.props.onUpdateFieldAppointment(ev.target.value,"time");
     this.changeMsg = ev => this.props.onUpdateFieldAppointment(ev.target.value,"message");
-    this.submitForm = () => ev => {
+    this.submitForm = () => ev =>{
       ev.preventDefault();
       this.props.onMakeAppointment(this.props.appmt.fileds);
     };
@@ -45,7 +45,7 @@ class AppointmentForm extends React.Component {
     const {type,name,charge,time,message} = this.props.appmt.fileds;
 
     return (
-      <form>
+      <form onSubmit={this.submitForm()}>
         <div className="row">
           <div className="col-md-12">
             <div className="form-group">
@@ -107,4 +107,4 @@ const mapStateToProps = state => ({
  });
 
 
-export default connect(mapStateToProps,{onUpdateFieldAppointment})(AppointmentForm);
+export default connect(mapStateToProps,{onUpdateFieldAppointment,onMakeAppointment})(AppointmentForm);
