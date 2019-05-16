@@ -5,6 +5,7 @@ import {
   LOGIN_DONE,
   LOGOUT,
   REGISTER,
+  CLEAN_REGISTER_FIELDS,
   SHOW_MODAL
 } from './constants/actionTypes';
 import firebase from "./reducers/firebase";
@@ -12,16 +13,8 @@ import firebase from "./reducers/firebase";
 const promiseMiddleware = store => next => action => {
   if (isPromise(action.payload)) {
     store.dispatch({ type: ASYNC_START, subtype: action.type });
-    const currentView = store.getState().viewChangeCounter;
-    const skipTracking = action.skipTracking;
-
     action.payload.then(
       res => {
-        // const currentState = store.getState()
-        // if (!skipTracking && currentState.viewChangeCounter !== currentView) {
-        //   return
-        // }
-        console.log('RESULT', res);
         if (action.type === REGISTER){
           firebase.database().ref('users/' + res.user.uid).set({
            name: action.user.name,
@@ -31,20 +24,40 @@ const promiseMiddleware = store => next => action => {
            appointments:[]
          }).then(
            res => {
+             store.dispatch({
+               type: LOGIN,
+               payload:firebase.auth().signInWithEmailAndPassword(action.user.email, action.user.password)
+             });
              store.dispatch({ type: ASYNC_END});
-             store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:"Successfully Registered!"} });
+             store.dispatch({ type: CLEAN_REGISTER_FIELDS});
+             store.dispatch({ type: SHOW_MODAL, payload:{show:true,msg:"Successfully Registered!"} });
            },
            error =>{
              store.dispatch({ type: ASYNC_END });
              store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
-
            }
          );
-       }else{
-         store.dispatch({ type: ASYNC_END, promise: action.payload });
+       }else if (action.type === LOGIN){
+         console.log(action);
+         firebase.database().ref('users/' + res.user.uid).once('value').then(
+          snapshot => {
+            console.log(action.payload );
+            store.dispatch({
+              type: LOGIN,
+              payload:snapshot.val()
+            });
+          },
+          error =>{
+            store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
+          }
+        );
+      }else{
+         console.log(action);
+         action.payload = null;
+         store.dispatch({ type: ASYNC_END});
+         store.dispatch(action);
        }
-        store.dispatch({ type: LOGIN, payload: res });
-        setTimeout(10);
+       setTimeout(10);
       },
       error => {
         store.dispatch({ type: ASYNC_END, promise: action.payload });
@@ -61,20 +74,6 @@ function isPromise(v) {
   return v && typeof v.then === 'function';
 }
 
-const localStorageMiddleware = store => next => action => {
-  if (action.type === REGISTER || action.type === LOGIN) {
-    if (!action.error) {
-      window.localStorage.setItem('uid', action.payload.user.uid);
-
-      // agent.setToken(action.payload.user.token);
-    }
-  } else if (action.type === LOGOUT) {
-    window.localStorage.setItem('jwt', '');
-    // agent.setToken(null);
-  }
-
-  next(action);
-};
 
 
-export { promiseMiddleware, localStorageMiddleware }
+export { promiseMiddleware }

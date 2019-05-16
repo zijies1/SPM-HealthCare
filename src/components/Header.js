@@ -8,9 +8,6 @@ class Header extends React.Component {
   // render
 
   renderLogin(){
-    const auth = this.props.firebase.firebase.auth();
-    console.log(auth.currentUser);
-
     if(this.props.auth.loggedIn){
       return(
         <li className="nav-item dropdown">

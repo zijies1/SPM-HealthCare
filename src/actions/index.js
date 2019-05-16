@@ -28,6 +28,7 @@ export function onRegister(user) {
 export function logout() {
   return {
     type: LOGOUT,
+    payload:firebase.auth().signOut()
   };
 }
 

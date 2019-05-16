@@ -4,6 +4,7 @@ import {
   LOGIN,
   LOGOUT,
   REGISTER,
+  CLEAN_REGISTER_FIELDS,
   LOGIN_PAGE_UNLOADED,
   MAKE_APPOINTMENT,
   ASYNC_START,
@@ -22,7 +23,7 @@ const initialstate = {
     homeAddress:"",
     phoneNumber:"",
     email:"",
-    password:"1",
+    password:"",
     appointments:[]
   },
   registerUser:{
@@ -38,24 +39,12 @@ const initialstate = {
 export default (state =initialstate, action) => {
   switch (action.type) {
     case LOGIN:
-      return{ ...state,
-              loggedIn:true,
-               user:{
-                 ...state.user,
-                 email:action.payload.user.email,
-                 userId:action.payload.user.userId
-            }};
+      return{ ...state,loggedIn:true,user:action.payload};
     case REGISTER:
-      return{ ...state,
-              loggedIn:true,
-               user:{
-                 ...state.user,
-                 email:action.payload.user.email,
-                 userId:action.payload.user.userId
-            }};
+    case CLEAN_REGISTER_FIELDS:
+      return{ ...state, registerUser:{}};
     case LOGOUT:
-      // localStorage.setItem('token', "");
-      return{ ...state, loggedIn:false };
+      return{ ...state, loggedIn:false,user:{}};
     case UPDATE_FIELD_AUTH:
       return { ...state, user: {...state.user,[action.key]: action.value}};
     case UPDATE_FIELD_AUTH_REGISTER:
@@ -66,7 +55,6 @@ export default (state =initialstate, action) => {
       return {...state,loading:true,error:""};
     case ASYNC_END:
       return {...state,loading:false};
-
     case SHOW_MODAL:
       return {...state,showModal:action.payload.show,error:action.payload.msg};
     default:

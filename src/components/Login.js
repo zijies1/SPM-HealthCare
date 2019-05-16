@@ -6,7 +6,8 @@ import logo from "../media/img/logo1.svg";
 import { onSubmit,
          onChangeEmail,
          onChangePassword } from "../actions/index.js";
- import ErrorModal from "./ErrorModal";
+import ErrorModal from "./ErrorModal";
+import Loading from "./Loading";
 
 import {
   UPDATE_FIELD_AUTH,
@@ -33,10 +34,7 @@ class Login extends React.Component {
   showLoading(){
     if(this.props.loading){
       return(
-        <button className="btn btn-primary my-3 py-1 px-1" type="button" disabled>
-          <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          Loading...
-        </button>
+        <input type="submit" className="fadeIn fourth dsiabled" value="Log In"/>
       )
     }else{
       return(
@@ -84,6 +82,7 @@ class Login extends React.Component {
 
         </div>
         <ErrorModal/>
+        <Loading/>
     </div>
     );
   }

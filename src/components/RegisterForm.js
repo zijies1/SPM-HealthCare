@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import { onUpdateFieldResgiter, onRegister } from "../actions/index.js";
 import ErrorModal from "./ErrorModal";
+import Loading from "./Loading";
 
 class RegisterForm extends React.Component {
 
@@ -21,10 +22,7 @@ class RegisterForm extends React.Component {
   showLoading(){
     if(this.props.loading){
       return(
-        <button className="btn btn-primary" type="button" disabled>
-          <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          Loading...
-        </button>
+        <input type="submit" value="Submit" className="btn btn-outline-light disabled"/>
       )
     }else{
       return(
@@ -35,7 +33,6 @@ class RegisterForm extends React.Component {
 
   // render
   render() {
-    console.log("home register",this.props.user);
     return (
       <form onSubmit={this.submitForm()}>
         <div className="form-row">
@@ -76,6 +73,7 @@ class RegisterForm extends React.Component {
           />
         </div>
         <ErrorModal/>
+        <Loading/>
         {this.showLoading()}
       </form>
     );

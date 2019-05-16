@@ -21,6 +21,7 @@ export const LOGIN = 'LOGIN';
 export const LOGIN_DONE = 'LOGIN_DONE';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER = 'REGISTER';
+export const CLEAN_REGISTER_FIELDS = 'CLEAN_REGISTER_FIELDS';
 export const LOGIN_PAGE_UNLOADED = 'LOGIN_PAGE_UNLOADED';
 export const REGISTER_PAGE_UNLOADED = 'REGISTER_PAGE_UNLOADED';
 export const ASYNC_START = 'ASYNC_START';
