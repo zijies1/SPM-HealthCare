@@ -13,14 +13,15 @@ import firebase from "../reducers/firebase.js";
 export function onSubmit(user) {
   return {
     type: LOGIN,
-    payload: user
+    payload:firebase.auth().signInWithEmailAndPassword(user.email, user.password)
   };
 }
 
 export function onRegister(user) {
   return {
     type: REGISTER,
-    payload:firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+    payload:firebase.auth().createUserWithEmailAndPassword(user.email, user.password),
+    user
   };
 }
 

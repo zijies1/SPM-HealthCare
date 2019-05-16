@@ -37,10 +37,15 @@ const initialstate = {
 
 export default (state =initialstate, action) => {
   switch (action.type) {
-    case LOGIN_DONE:
-     console.log(action);
-
-      // localStorage.setItem('token', "token1");
+    case LOGIN:
+      return{ ...state,
+              loggedIn:true,
+               user:{
+                 ...state.user,
+                 email:action.payload.user.email,
+                 userId:action.payload.user.userId
+            }};
+    case REGISTER:
       return{ ...state,
               loggedIn:true,
                user:{
@@ -61,8 +66,7 @@ export default (state =initialstate, action) => {
       return {...state,loading:true,error:""};
     case ASYNC_END:
       return {...state,loading:false};
-    case REGISTER:
-      return state;
+
     case SHOW_MODAL:
       return {...state,showModal:action.payload.show,error:action.payload.msg};
     default:

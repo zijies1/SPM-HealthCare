@@ -43,7 +43,7 @@ class RegisterForm extends React.Component {
             <input
               type="email" className="form-control form-control-lg"
               placeholder="Email"
-              value={this.props.user.email} onChange={this.changeEmail.bind(this)}
+              value={this.props.user.email} onChange={this.changeEmail}
             />
           </div>
          <div className="form-group col-md-6">
