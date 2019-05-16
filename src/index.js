@@ -8,21 +8,24 @@ import firebase from "./reducers/firebase";
 
 // firebase.auth().signOut();
 // This logic might be placed some better place
-firebase.auth().onAuthStateChanged((user)=> {
-  console.log(user);
-  if (user) {
-    store.dispatch({ type: ASYNC_START});
-    firebase.database().ref('/users/' + user.uid).once('value').then((snapshot)=> {
-      store.dispatch({ type: LOGIN, payload:snapshot.val()});
-      store.dispatch({ type: ASYNC_END });
-    }).catch(error =>{
-      store.dispatch({ type: ASYNC_END });
-      store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
-    });
-  } else {
-    console.log("no user signed in ");
-  }
-});
+
+if(!store.getState().auth.loggedIn){
+  firebase.auth().onAuthStateChanged((user)=> {
+    console.log(user);
+    if (user) {
+      store.dispatch({ type: ASYNC_START});
+      firebase.database().ref('/users/' + user.uid).once('value').then((snapshot)=> {
+        store.dispatch({ type: LOGIN, payload:snapshot.val()});
+        store.dispatch({ type: ASYNC_END });
+      }).catch(error =>{
+        store.dispatch({ type: ASYNC_END });
+        store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
+      });
+    } else {
+      console.log("no user signed in ");
+    }
+  });
+}
 
 // render the main component
 ReactDOM.render(

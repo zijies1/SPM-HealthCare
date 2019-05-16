@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import style from "./style.css";
 import logo from "../media/img/logo1.svg";
-import { onSubmit,
-         onChangeEmail,
-         onChangePassword } from "../actions/index.js";
+import { onSubmit,onUpdateField } from "../actions/index.js";
 import ErrorModal from "./ErrorModal";
 import Loading from "./Loading";
 
@@ -20,14 +18,14 @@ class Login extends React.Component {
 
   constructor(props) {
     super(props);
-    this.changeEmail = ev => this.props.onChangeEmail(ev.target.value);
-    this.changePassword = ev => this.props.onChangePassword(ev.target.value);
+    this.changeEmail = ev => this.props.onUpdateField(ev.target.value,"email");
+    this.changePassword = ev => this.props.onUpdateField(ev.target.value,"password");
     this.submitForm = () => ev => {
       ev.preventDefault();
       this.props.onSubmit(this.props.user);
     };
     this.backHome = () =>{
-      this.props.router.push("/");
+      this.props.history.push("/");
     };
   }
 
@@ -95,4 +93,4 @@ const mapStateToProps = state => ({
  });
 
 
-export default connect(mapStateToProps, {onSubmit,onChangeEmail,onChangePassword})(Login);
+export default connect(mapStateToProps, {onSubmit,onUpdateField})(Login);

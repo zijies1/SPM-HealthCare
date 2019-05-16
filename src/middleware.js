@@ -5,39 +5,44 @@ import {
   LOGIN_DONE,
   LOGOUT,
   REGISTER,
+  UPDATE_PASSWORD,
   CLEAN_REGISTER_FIELDS,
   SHOW_MODAL
 } from './constants/actionTypes';
 import firebase from "./reducers/firebase";
 
+function handleRegister(store,action,uid){
+  firebase.database().ref('users/' + uid).set({
+   name: action.user.name,
+   email: action.user.email,
+   homeAddress:action.user.homeAddress,
+   phoneNumber:action.user.phoneNumber
+ }).then(
+   res => {
+     store.dispatch({
+       type: LOGIN,
+       payload:firebase.auth().signInWithEmailAndPassword(action.user.email, action.user.password)
+     });
+     store.dispatch({ type: ASYNC_END});
+     store.dispatch({ type: CLEAN_REGISTER_FIELDS});
+     store.dispatch({ type: SHOW_MODAL, payload:{show:true,msg:"Success!"} });
+   },
+   error =>{
+     store.dispatch({ type: ASYNC_END });
+     store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
+   }
+ );
+};
+
 const promiseMiddleware = store => next => action => {
+  console.log(action);
   if (isPromise(action.payload)) {
     store.dispatch({ type: ASYNC_START, subtype: action.type });
     action.payload.then(
       res => {
         if (action.type === REGISTER){
-          firebase.database().ref('users/' + res.user.uid).set({
-           name: action.user.name,
-           email: action.user.email,
-           homeAddress:action.user.homeAddress,
-           phoneNumber:action.user.phoneNumber,
-           appointments:[]
-         }).then(
-           res => {
-             store.dispatch({
-               type: LOGIN,
-               payload:firebase.auth().signInWithEmailAndPassword(action.user.email, action.user.password)
-             });
-             store.dispatch({ type: ASYNC_END});
-             store.dispatch({ type: CLEAN_REGISTER_FIELDS});
-             store.dispatch({ type: SHOW_MODAL, payload:{show:true,msg:"Successfully Registered!"} });
-           },
-           error =>{
-             store.dispatch({ type: ASYNC_END });
-             store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
-           }
-         );
-       }else if (action.type === LOGIN){
+          handleRegister(store,action,res.user.uid);
+        }else if (action.type === LOGIN){
          firebase.database().ref('users/' + res.user.uid).once('value').then(
           snapshot => {
             store.dispatch({

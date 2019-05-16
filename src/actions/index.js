@@ -1,6 +1,8 @@
 import {
   UPDATE_FIELD_AUTH,
   UPDATE_FIELD_AUTH_REGISTER,
+  UPDATE_PROFILE,
+  UPDATE_PASSWORD,
   LOGIN,
   LOGOUT,
   REGISTER,
@@ -40,6 +42,26 @@ export function onUpdateField(value, key){
   };
 }
 
+export function onUpdateProfile(user){
+  return {
+    type: UPDATE_PROFILE,
+    payload:firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+       name: user.name,
+       email: user.email,
+       homeAddress:user.homeAddress,
+       phoneNumber:user.phoneNumber,
+     })
+  };
+}
+
+export function onUpdatePassword(value){
+  var user = firebase.auth().currentUser;
+  return {
+    type: UPDATE_PROFILE,
+    payload: user.updatePassword(value)
+  };
+}
+
 export function onUpdateFieldResgiter(value, key){
   return {
     type: UPDATE_FIELD_AUTH_REGISTER,
@@ -51,22 +73,6 @@ export function onUpdateFieldResgiter(value, key){
 export function onMakingAppointment(value){
   return {
     type: UPDATE_FIELD_AUTH,
-    value
-  };
-}
-
-export function onChangeEmail( value){
-  return {
-    type: UPDATE_FIELD_AUTH,
-    key: 'email',
-    value
-  };
-}
-
-export function onChangePassword( value){
-  return {
-    type: UPDATE_FIELD_AUTH,
-    key: 'password',
     value
   };
 }

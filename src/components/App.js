@@ -15,6 +15,7 @@ export default class App extends React.Component {
           <div>
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
+            <Route path="/profile" component={Profile}/>
             <Route path="/appointment" component={AppointmentForm}/>
           </div>
       </Router>

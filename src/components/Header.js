@@ -12,10 +12,10 @@ class Header extends React.Component {
       return(
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {this.props.auth.user.email}
+            {this.props.auth.email}
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a className="dropdown-item" href="/profile">Account</a>
+            <Link to="/profile"><div className="dropdown-item">Account</div></Link>
             <a className="dropdown-item" href="/appointment">Make An Appointment</a>
             <div className="dropdown-divider"></div>
             <button className="dropdown-item" onClick={this.props.logout} >Logout</button>
