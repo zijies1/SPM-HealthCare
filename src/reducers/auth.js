@@ -8,7 +8,8 @@ import {
   MAKE_APPOINTMENT,
   ASYNC_START,
   ASYNC_END,
-  SHOW_MODAL
+  SHOW_MODAL,
+  LOGIN_DONE
 } from '../constants/actionTypes';
 
 const initialstate = {
@@ -17,15 +18,15 @@ const initialstate = {
   showModal:false,
   loggedIn:false,
   user: {
-    name:"Jackson",
-    homeAddress:"Melbourne Central,3000",
-    phoneNumber:"0401092052",
-    email:"123@gmail.com",
-    password:"123",
+    name:"",
+    homeAddress:"",
+    phoneNumber:"",
+    email:"",
+    password:"1",
     appointments:[]
   },
   registerUser:{
-    name:"wd",
+    name:"",
     homeAddress:"",
     phoneNumber:"",
     email:"",
@@ -36,11 +37,19 @@ const initialstate = {
 
 export default (state =initialstate, action) => {
   switch (action.type) {
-    case LOGIN:
-      localStorage.setItem('token', "token1");
-      return{ ...state, loggedIn:true };
+    case LOGIN_DONE:
+     console.log(action);
+
+      // localStorage.setItem('token', "token1");
+      return{ ...state,
+              loggedIn:true,
+               user:{
+                 ...state.user,
+                 email:action.payload.user.email,
+                 userId:action.payload.user.userId
+            }};
     case LOGOUT:
-      localStorage.setItem('token', "");
+      // localStorage.setItem('token', "");
       return{ ...state, loggedIn:false };
     case UPDATE_FIELD_AUTH:
       return { ...state, user: {...state.user,[action.key]: action.value}};
@@ -51,7 +60,7 @@ export default (state =initialstate, action) => {
     case ASYNC_START:
       return {...state,loading:true,error:""};
     case ASYNC_END:
-      return {...state,loading:false,error:action.message};
+      return {...state,loading:false};
     case REGISTER:
       return state;
     case SHOW_MODAL:

@@ -2,21 +2,26 @@ import React from "react";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { logout } from "../actions/index.js";
+
+
 class Header extends React.Component {
   // render
 
   renderLogin(){
+    const auth = this.props.firebase.firebase.auth();
+    console.log(auth.currentUser);
+
     if(this.props.auth.loggedIn){
       return(
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Username
+            {this.props.auth.user.email}
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <a className="dropdown-item" href="/profile">Account</a>
             <a className="dropdown-item" href="/appointment">Make An Appointment</a>
             <div className="dropdown-divider"></div>
-            <a className="dropdown-item" href="/" onClick={this.props.logout} >Logout</a>
+            <button className="dropdown-item" onClick={this.props.logout} >Logout</button>
           </div>
         </li>
       )
@@ -50,7 +55,10 @@ class Header extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ auth:state.auth });
+const mapStateToProps = state => ({
+  firebase:state.firebase,
+  auth:state.auth
+ });
 
 
 export default connect(mapStateToProps, {logout})(Header);

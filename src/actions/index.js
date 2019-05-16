@@ -10,10 +10,10 @@ import {
 } from '../constants/actionTypes';
 import firebase from "../reducers/firebase.js";
 
-export function onSubmit(router) {
-  router.push('/');
+export function onSubmit(user) {
   return {
     type: LOGIN,
+    payload: user
   };
 }
 

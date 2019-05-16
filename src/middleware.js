@@ -2,48 +2,43 @@ import {
   ASYNC_START,
   ASYNC_END,
   LOGIN,
+  LOGIN_DONE,
   LOGOUT,
   REGISTER,
   SHOW_MODAL
 } from './constants/actionTypes';
+import firebase from "./reducers/firebase";
 
 const promiseMiddleware = store => next => action => {
-  console.log("isPromise(action.payload)",isPromise(action.payload));
-  if (isPromise(action.payload)) {
+  if (action.type === REGISTER || action.type === LOGIN) {
     store.dispatch({ type: ASYNC_START, subtype: action.type });
-
-    const currentView = store.getState().viewChangeCounter;
-    const skipTracking = action.skipTracking;
-
-    action.payload.then(
-      res => {
-        // const currentState = store.getState()
-        // if (!skipTracking && currentState.viewChangeCounter !== currentView) {
-        //   return
-        // }
-        console.log('RESULT', res);
-        action.payload = res;
-        store.dispatch({ type: ASYNC_END, promise: action.payload });
-        store.dispatch(action);
-        setTimeout(10);
-      },
-      error => {
-        // const currentState = store.getState()
-        // if (!skipTracking && currentState.viewChangeCounter !== currentView) {
-        //   return
-        // }
-        if (!action.skipTracking) {
-          store.dispatch({ type: ASYNC_END, promise: action.payload });
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    .then(()=>{
+      console.log("action.payload",action.payload);
+      firebase.auth().signInWithEmailAndPassword(action.payload.email, action.payload.password)
+      .then(
+        res => {
+          console.log("res",res);
+          store.dispatch({ type: ASYNC_END });
+          store.dispatch({type:LOGIN_DONE,payload:res});
+          setTimeout(10);
+        },
+        error => {
+          console.log("middleware,error",error);
+          store.dispatch({ type: ASYNC_END });
+          store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
         }
-        store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
-      }
-    );
-
+      );
+    })
     return;
   }
 
   next(action);
 };
+
+function isPromise(v) {
+  return v && typeof v.then === 'function';
+}
 
 const localStorageMiddleware = store => next => action => {
   if (action.type === REGISTER || action.type === LOGIN) {
@@ -58,10 +53,6 @@ const localStorageMiddleware = store => next => action => {
 
   next(action);
 };
-
-function isPromise(v) {
-  return v && typeof v.then === 'function';
-}
 
 
 export { promiseMiddleware, localStorageMiddleware }

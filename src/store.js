@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import reducers from './reducers';
-import { promiseMiddleware} from './middleware';
+import { promiseMiddleware, localStorageMiddleware} from './middleware';
 
 const logger = (store) => (next) => (action) =>{
   console.log("action fired",action);
@@ -10,6 +10,6 @@ const logger = (store) => (next) => (action) =>{
 
 const store = createStore(
   reducers,
-  applyMiddleware(promiseMiddleware)
+  applyMiddleware(promiseMiddleware,localStorageMiddleware)
 );
 export default store ;
