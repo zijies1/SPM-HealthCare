@@ -5,7 +5,8 @@ import {
   LOGOUT,
   REGISTER,
   LOGIN_PAGE_UNLOADED,
-  MAKE_APPOINTMENT
+  MAKE_APPOINTMENT,
+  SHOW_MODAL
 } from '../constants/actionTypes';
 import firebase from "../reducers/firebase.js";
 
@@ -65,5 +66,12 @@ export function onChangePassword( value){
     type: UPDATE_FIELD_AUTH,
     key: 'password',
     value
+  };
+}
+
+export function onModal(value){
+  return {
+    type: SHOW_MODAL,
+    payload:value
   };
 }

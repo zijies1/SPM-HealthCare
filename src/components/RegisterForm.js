@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { onUpdateFieldResgiter, onRegister } from "../actions/index.js";
-
+import ErrorModal from "./ErrorModal";
 
 class RegisterForm extends React.Component {
 
@@ -16,6 +16,21 @@ class RegisterForm extends React.Component {
       ev.preventDefault();
       this.props.onRegister(this.props.user);
     };
+  }
+
+  showLoading(){
+    if(this.props.loading){
+      return(
+        <button className="btn btn-primary" type="button" disabled>
+          <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Loading...
+        </button>
+      )
+    }else{
+      return(
+        <input type="submit" value="Submit" className="btn btn-outline-light"/>
+      )
+    }
   }
 
   // render
@@ -60,7 +75,8 @@ class RegisterForm extends React.Component {
             value={this.props.user.homeAddress} onChange={this.changeHomeAddress}
           />
         </div>
-        <input type="submit" value="Submit" className="btn btn-outline-light"/>
+        <ErrorModal/>
+        {this.showLoading()}
       </form>
     );
   }
@@ -68,7 +84,7 @@ class RegisterForm extends React.Component {
 
 const mapStateToProps = state => ({
   user:state.auth.registerUser,
-  firebase:state.firebase
+  loading:state.auth.loading
 });
 
 

@@ -5,10 +5,16 @@ import {
   LOGOUT,
   REGISTER,
   LOGIN_PAGE_UNLOADED,
-  MAKE_APPOINTMENT
+  MAKE_APPOINTMENT,
+  ASYNC_START,
+  ASYNC_END,
+  SHOW_MODAL
 } from '../constants/actionTypes';
 
 const initialstate = {
+  loading:false,
+  error:"",
+  showModal:false,
   loggedIn:false,
   user: {
     name:"Jackson",
@@ -42,8 +48,14 @@ export default (state =initialstate, action) => {
       return { ...state, registerUser: {...state.registerUser,[action.key]: action.value}};
     case MAKE_APPOINTMENT:
       return state;
+    case ASYNC_START:
+      return {...state,loading:true,error:""};
+    case ASYNC_END:
+      return {...state,loading:false,error:action.message};
     case REGISTER:
       return state;
+    case SHOW_MODAL:
+      return {...state,showModal:action.payload.show,error:action.payload.msg};
     default:
       return state;
   }

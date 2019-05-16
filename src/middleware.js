@@ -3,12 +3,14 @@ import {
   ASYNC_END,
   LOGIN,
   LOGOUT,
-  REGISTER
+  REGISTER,
+  SHOW_MODAL
 } from './constants/actionTypes';
 
 const promiseMiddleware = store => next => action => {
+  console.log("isPromise(action.payload)",isPromise(action.payload));
   if (isPromise(action.payload)) {
-    // store.dispatch({ type: ASYNC_START, subtype: action.type });
+    store.dispatch({ type: ASYNC_START, subtype: action.type });
 
     const currentView = store.getState().viewChangeCounter;
     const skipTracking = action.skipTracking;
@@ -20,25 +22,20 @@ const promiseMiddleware = store => next => action => {
         //   return
         // }
         console.log('RESULT', res);
-        // action.payload = res;
-        // store.dispatch({ type: ASYNC_END, promise: action.payload });
-        // store.dispatch(action);
-        // setTimeout(,10000);
+        action.payload = res;
+        store.dispatch({ type: ASYNC_END, promise: action.payload });
+        store.dispatch(action);
+        setTimeout(10);
       },
       error => {
         // const currentState = store.getState()
         // if (!skipTracking && currentState.viewChangeCounter !== currentView) {
         //   return
         // }
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      //   action.error = true;
-      //   action.payload = error.response.body;
-      //   if (!action.skipTracking) {
-      //     store.dispatch({ type: ASYNC_END, promise: action.payload });
-      //   }
-      //   store.dispatch(action);
+        if (!action.skipTracking) {
+          store.dispatch({ type: ASYNC_END, promise: action.payload });
+        }
+        store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
       }
     );
 

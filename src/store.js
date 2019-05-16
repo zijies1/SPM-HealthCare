@@ -10,6 +10,6 @@ const logger = (store) => (next) => (action) =>{
 
 const store = createStore(
   reducers,
-  applyMiddleware(logger,promiseMiddleware)
+  applyMiddleware(promiseMiddleware)
 );
 export default store ;
