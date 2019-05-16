@@ -19,7 +19,7 @@ class Profile extends React.Component {
         <Loading/>
         <hr className="mt-100"/>
         <Banner section = "Account"/>
-        <div className="mb-5">
+        <div className="mb-5 fadeIn">
           <div className="container text-dark">
           	<div className="row">
           		<div className="col-md-3 ">

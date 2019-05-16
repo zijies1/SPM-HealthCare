@@ -5,7 +5,7 @@ import Home from "./Home";
 import MainContainer from "./MainContainer";
 import Login from "./Login";
 import NotFound from "./NotFound";
-import AppointmentForm from "./AppointmentForm";
+import Appointment from "./Appointment";
 import Profile from "./Profile";
 
 export default class App extends React.Component {
@@ -16,7 +16,7 @@ export default class App extends React.Component {
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/profile" component={Profile}/>
-            <Route path="/appointment" component={AppointmentForm}/>
+            <Route path="/appointment" component={Appointment}/>
           </div>
       </Router>
     );

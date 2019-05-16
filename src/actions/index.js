@@ -8,7 +8,8 @@ import {
   REGISTER,
   LOGIN_PAGE_UNLOADED,
   MAKE_APPOINTMENT,
-  SHOW_MODAL
+  SHOW_MODAL,
+  UPDATE_FIELD_APPOINTMENT
 } from '../constants/actionTypes';
 import firebase from "../reducers/firebase.js";
 
@@ -37,6 +38,13 @@ export function logout() {
 export function onUpdateField(value, key){
   return {
     type: UPDATE_FIELD_AUTH,
+    key: key,
+    value
+  };
+}
+export function onUpdateFieldAppointment(value, key){
+  return {
+    type: UPDATE_FIELD_APPOINTMENT,
     key: key,
     value
   };

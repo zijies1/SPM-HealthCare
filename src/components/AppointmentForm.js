@@ -1,107 +1,118 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { onUpdateField } from "../actions/index.js";
+import { onUpdateFieldAppointment} from "../actions/index.js";
 import About from "./About";
 import Banner from "./Banner";
-class AppointmentrForm extends React.Component {
+import Header from "./Header";
+import Footer from "./Footer";
+import Loading from "./Loading";
+
+
+class AppointmentForm extends React.Component {
+  constructor(props){
+    super(props);
+    this.changeType = ev =>{
+      this.props.onUpdateFieldAppointment(ev.target.value,"type");
+      if(this.maybeChangeName(ev.target.value)){
+        this.props.onUpdateFieldAppointment(this.maybeChangeName(ev.target.value),"name");
+      }
+    }
+    this.changeName = ev => {
+      console.log("this.changeName",ev.target.value);
+      this.props.onUpdateFieldAppointment(ev.target.value,"name");
+    }
+    this.changeCharge = ev => this.props.onUpdateFieldAppointment(ev.target.value,"charge");
+    this.changeTime = ev => this.props.onUpdateFieldAppointment(ev.target.value,"time");
+    this.changeMsg = ev => this.props.onUpdateFieldAppointment(ev.target.value,"message");
+  }
+
+  maybeChangeName(type){
+    const {doctors} = this.props.appmt;
+    var count = 0;
+    var doct = 0;
+    doctors.map(doc=>{
+      if(doc.type === type){
+        count +=1;
+        doct = doc;
+      }
+    });
+    if(count == 1){
+      return doct.name;
+    }
+  }
+
   // render
   render() {
+    const {types,doctors,times} = this.props.appmt;
+    const {type,name,charge,time,message} = this.props.appmt.fileds;
+
     return (
-      <div>
-        <hr className="mt-100"/>
-        <Banner section = "Appointment"/>
-        <div className=" container text-dark pb-5">
-               <div className="row">
-                   <div className="col-md-6">
-                       <div className="well-block">
-                           <div className="well-title">
-                               <h2>Questions? Book an Appointment</h2>
-                           </div>
-                           <form>
-                               <div className="row">
-                                   <div className="col-md-6">
-                                       <div className="form-group">
-                                           <label className="control-label" htmlFor="name">Name</label>
-                                           <input id="name" name="name" type="text" placeholder="Name" className="form-control input-md"/>
-                                       </div>
-                                   </div>
-                                   <div className="col-md-6">
-                                       <div className="form-group">
-                                           <label className="control-label" htmlFor="email">Email</label>
-                                           <input id="email" name="email" type="text" placeholder="E-Mail" className="form-control input-md"/>
-                                       </div>
-                                   </div>
-                                   <div className="col-md-6">
-                                       <div className="form-group">
-                                           <label className="control-label" htmlFor="date">Preferred Date</label>
-                                           <input id="date" name="date" type="text" placeholder="Preferred Date" className="form-control input-md"/>
-                                       </div>
-                                   </div>
-                                   <div className="col-md-6">
-                                       <div className="form-group">
-                                           <label className="control-label" htmlFor="time">Preferred Time</label>
-                                           <select id="time" name="time" className="form-control">
-                                               <option value="8:00 to 9:00">8:00 to 9:00</option>
-                                               <option value="9:00 to 10:00">9:00 to 10:00</option>
-                                               <option value="10:00 to 1:00">10:00 to 1:00</option>
-                                           </select>
-                                       </div>
-                                   </div>
-                                   <div className="col-md-12">
-                                       <div className="form-group">
-                                           <label className="control-label" htmlFor="appointmentfor">Appointment For</label>
-                                           <select id="appointmentfor" name="appointmentfor" className="form-control">
-                                               <option value="Service#1">Service#1</option>
-                                               <option value="Service#2">Service#2</option>
-                                               <option value="Service#3">Service#3</option>
-                                               <option value="Service#4">Service#4</option>
-                                           </select>
-                                       </div>
-                                   </div>
-                                   <div className="col-md-12">
-                                       <div className="form-group">
-                                           <button id="singlebutton" name="singlebutton" className="btn btn-primary">Make An Appointment</button>
-                                       </div>
-                                   </div>
-                               </div>
-                           </form>
-                       </div>
-                   </div>
-                   <div className="col-md-6">
-                       <div className="well-block">
-                           <div className="well-title">
-                               <h2>Why Appointment with Us</h2>
-                           </div>
-                           <div className="feature-block">
-                               <div className="feature feature-blurb-text">
-                                   <h4 className="feature-title">24/7 Hours Available</h4>
-                                   <div className="feature-content">
-                                       <p>Integer nec nisi sed mi hendrerit mattis. Vestibulum mi nunc, ultricies quis vehicula et, iaculis in magnestibulum.</p>
-                                   </div>
-                               </div>
-                               <div className="feature feature-blurb-text">
-                                   <h4 className="feature-title">Experienced Staff Available</h4>
-                                   <div className="feature-content">
-                                       <p>Aliquam sit amet mi eu libero fermentum bibendum pulvinar a turpis. Vestibulum quis feugiat risus. </p>
-                                   </div>
-                               </div>
-                               <div className="feature feature-blurb-text">
-                                   <h4 className="feature-title">Low Price & Fees</h4>
-                                   <div className="feature-content">
-                                       <p>Praesent eu sollicitudin nunc. Cras malesuada vel nisi consequat pretium. Integer auctor elementum nulla suscipit in.</p>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-         </div>
+      <form>
+        <div className="row">
+          <div className="col-md-12">
+            <div className="form-group">
+                <label className="control-label">Type</label>
+                <select id="type" name="type" className="form-control" value={type} onChange={this.changeType}>
+                  {types.map(type =>{
+                    return (<option key={type}>{type}</option>)
+                  })}
+                </select>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form-group">
+                <label className="control-label">Doctors</label>
+                <select className="form-control" value={name} onChange={this.changeName}>
+                  {doctors.map(doc=>{
+                    if(doc.type === this.props.appmt.fileds.type){
+                      return (<option key={doc.name}>{doc.name}</option>)
+                    }
+                   })}
+                </select>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form-group">
+                <label className="control-label">Charge($AU/hour)</label>
+                <select className="form-control" value={charge} onChange={this.changeCharge}>
+                  {doctors.map(doc=>{
+                    if(doc.name === this.props.appmt.fileds.name){
+                      return (<option key={doc.name}>{doc.charge}</option>)
+                    }
+                   })}
+                </select>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form-group">
+                <label className="control-label" htmlFor="time">Preferred Time</label>
+                <select className="form-control" value={time} onChange={this.changeTime}>
+                  {times.map(t=>{
+                    return (<option key={t}>{t}</option>)
+                   })}
+                </select>
+            </div>
+          </div>
+          <div className="col-md-12">
+            <div className="form-group">
+              <label >Message</label>
+              <textarea className="form-control" value={message} onChange={this.changeMsg} rows="3"></textarea>
+            </div>
+          </div>
+          <div className="col-md-12">
+              <div className="form-group">
+                  <button id="singlebutton" name="singlebutton" className="btn btn-primary">Make An Appointment</button>
+              </div>
+          </div>
+        </div>
+      </form>
     );
   }
 }
 
-const mapStateToProps = state => ({ user:state.auth.user });
+const mapStateToProps = state => ({
+  appmt:state.appointment
+ });
 
 
-export default connect(mapStateToProps,null)(AppointmentrForm);
+export default connect(mapStateToProps,{onUpdateFieldAppointment})(AppointmentForm);

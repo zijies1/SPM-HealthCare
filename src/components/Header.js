@@ -16,7 +16,7 @@ class Header extends React.Component {
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <Link to="/profile"><div className="dropdown-item">Account</div></Link>
-            <a className="dropdown-item" href="/appointment">Make An Appointment</a>
+            <Link to="/appointment"><div className="dropdown-item">Make An Appointment</div></Link>
             <div className="dropdown-divider"></div>
             <button className="dropdown-item" onClick={this.props.logout} >Logout</button>
           </div>
