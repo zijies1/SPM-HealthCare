@@ -42,9 +42,22 @@ export default (state =initialstate, action) => {
       return{ ...state,loggedIn:true,user:action.payload};
     case REGISTER:
     case CLEAN_REGISTER_FIELDS:
-      return{ ...state, registerUser:{}};
+      return{ ...state, registerUser:{
+        name:"",
+        homeAddress:"",
+        phoneNumber:"",
+        email:"",
+        password:""
+      }};
     case LOGOUT:
-      return{ ...state, loggedIn:false,user:{}};
+      return{ ...state, loggedIn:false,user:{
+        name:"",
+        homeAddress:"",
+        phoneNumber:"",
+        email:"",
+        password:"",
+        appointments:[]
+      }};
     case UPDATE_FIELD_AUTH:
       return { ...state, user: {...state.user,[action.key]: action.value}};
     case UPDATE_FIELD_AUTH_REGISTER:

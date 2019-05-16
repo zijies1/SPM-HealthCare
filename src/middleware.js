@@ -38,10 +38,8 @@ const promiseMiddleware = store => next => action => {
            }
          );
        }else if (action.type === LOGIN){
-         console.log(action);
          firebase.database().ref('users/' + res.user.uid).once('value').then(
           snapshot => {
-            console.log(action.payload );
             store.dispatch({
               type: LOGIN,
               payload:snapshot.val()

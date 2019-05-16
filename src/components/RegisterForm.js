@@ -41,6 +41,7 @@ class RegisterForm extends React.Component {
               type="email" className="form-control form-control-lg"
               placeholder="Email"
               value={this.props.user.email} onChange={this.changeEmail}
+              required
             />
           </div>
          <div className="form-group col-md-6">
@@ -48,6 +49,7 @@ class RegisterForm extends React.Component {
              type="password" className="form-control form-control-lg"
              placeholder="Password"
              value={this.props.user.password} onChange={this.changePassword}
+             required
            />
          </div>
         </div>
@@ -56,6 +58,7 @@ class RegisterForm extends React.Component {
             className="form-control form-control-lg"
             placeholder="Name"
             value={this.props.user.name} onChange={this.changeName}
+            required
           />
         </div>
         <div className="form-group">
@@ -63,6 +66,7 @@ class RegisterForm extends React.Component {
             className="form-control form-control-lg"
             placeholder="Phone Number"
             value={this.props.user.phoneNumber} onChange={this.changePhoneNumber}
+            required
           />
         </div>
         <div className="form-group">
@@ -70,6 +74,7 @@ class RegisterForm extends React.Component {
             className="form-control form-control-lg"
             placeholder="Home Address"
             value={this.props.user.homeAddress} onChange={this.changeHomeAddress}
+            required
           />
         </div>
         <ErrorModal/>
