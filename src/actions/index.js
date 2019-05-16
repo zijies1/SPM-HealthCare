@@ -78,9 +78,9 @@ export function onUpdateFieldResgiter(value, key){
   };
 }
 
-export function onMakingAppointment(value){
+export function onMakeAppointment(value){
   return {
-    type: UPDATE_FIELD_AUTH,
+    type: MAKE_APPOINTMENT,
     value
   };
 }

@@ -1,5 +1,6 @@
 import {
   UPDATE_FIELD_APPOINTMENT,
+  MAKE_APPOINTMENT
 } from '../constants/actionTypes';
 
 
@@ -35,7 +36,7 @@ const initialstate = {
   fileds:{
     type:types[0],
     name:doctors[0].name,
-    charge:"",
+    charge:doctors[0].charge,
     time:times[0],
     message:""
   },
@@ -49,6 +50,8 @@ export default (state =initialstate, action) => {
   switch (action.type) {
     case UPDATE_FIELD_APPOINTMENT:
       return { ...state,fileds: {...state.fileds,[action.key]: action.value}};
+    case MAKE_APPOINTMENT:
+      return state;
     default:
       return state;
   }
