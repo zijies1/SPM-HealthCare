@@ -89,7 +89,9 @@ export function onMakeAppointment(appmt){
   updates['users/' + uid + '/appointments/' + newPostKey] = appmt;
   return {
     type: MAKE_APPOINTMENT,
-    payload:firebase.database().ref().update(updates)
+    payload:firebase.database().ref().update(updates),
+    key:newPostKey,
+    appmt
   };
 }
 
@@ -115,5 +117,6 @@ export function onCancelAppoitment(key){
   return {
     type: CANCEL_APPOINTMENT,
     payload:firebase.database().ref().update(updates),
+    key
   };
 }

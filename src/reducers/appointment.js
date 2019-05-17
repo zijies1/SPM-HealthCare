@@ -1,7 +1,5 @@
 import {
-  UPDATE_FIELD_APPOINTMENT,
-  MAKE_APPOINTMENT,
-  CANCEL_APPOINTMENT
+  UPDATE_FIELD_APPOINTMENT
 } from '../constants/actionTypes';
 
 
@@ -51,10 +49,6 @@ export default (state =initialstate, action) => {
   switch (action.type) {
     case UPDATE_FIELD_APPOINTMENT:
       return { ...state,fileds: {...state.fileds,[action.key]: action.value}};
-    case MAKE_APPOINTMENT:
-      return state;
-    case CANCEL_APPOINTMENT:
-      return state
     default:
       return state;
   }

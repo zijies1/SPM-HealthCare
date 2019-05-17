@@ -8,11 +8,12 @@ import {
   REGISTER,
   CLEAN_REGISTER_FIELDS,
   LOGIN_PAGE_UNLOADED,
-  MAKE_APPOINTMENT,
   ASYNC_START,
   ASYNC_END,
   SHOW_MODAL,
-  LOGIN_DONE
+  LOGIN_DONE,
+  MAKE_APPOINTMENT,
+  CANCEL_APPOINTMENT
 } from '../constants/actionTypes';
 
 const initialstate = {
@@ -59,14 +60,25 @@ export default (state =initialstate, action) => {
       return { ...state, registerUser: {...state.registerUser,[action.key]: action.value}};
     case UPDATE_PROFILE:
         return { ...state, email:state.user.email};
-    case MAKE_APPOINTMENT:
-      return state;
     case ASYNC_START:
       return {...state,loading:true,error:""};
     case ASYNC_END:
       return {...state,loading:false};
     case SHOW_MODAL:
       return {...state,showModal:action.payload.show,error:action.payload.msg};
+    case CANCEL_APPOINTMENT:
+      return {...state,
+              user:{...state.user,
+                    appointments:{[action.key]:undefined,...state.user.appointments}
+                    }
+              };
+    case MAKE_APPOINTMENT:
+      console.log(MAKE_APPOINTMENT,action);
+      return {...state,
+              user:{...state.user,
+                    appointments:{[action.key]:action.appointment,...state.user.appointments}
+                    }
+              };
     default:
       return state;
   }

@@ -60,9 +60,14 @@ const promiseMiddleware = store => next => action => {
          console.log(action);
          action.payload = null;
          store.dispatch({ type: ASYNC_END});
-         store.dispatch(action);
          if(action.type===MAKE_APPOINTMENT){
-           store.dispatch({ type:MAKE_APPOINTMENT, payload:{show:true,msg:"Success!"} });
+           store.dispatch({ type:MAKE_APPOINTMENT, appointments:action.appmt,key:action.key});
+           store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:"Success!"} });
+         }else if(action.type===CANCEL_APPOINTMENT){
+           store.dispatch({ type:CANCEL_APPOINTMENT, key:action.key});
+           store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:"Success!"} });
+         }else{
+           store.dispatch(action);
          }
        }
        setTimeout(10);
