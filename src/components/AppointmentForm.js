@@ -25,6 +25,7 @@ class AppointmentForm extends React.Component {
     this.submitForm = () => ev =>{
       ev.preventDefault();
       this.props.onMakeAppointment(this.props.appmt.fileds);
+      window.location.reload();
     };
   }
 

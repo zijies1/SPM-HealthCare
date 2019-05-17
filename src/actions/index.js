@@ -8,6 +8,7 @@ import {
   REGISTER,
   LOGIN_PAGE_UNLOADED,
   MAKE_APPOINTMENT,
+  CANCEL_APPOINTMENT,
   SHOW_MODAL,
   UPDATE_FIELD_APPOINTMENT,
   CHANGE_PROFILE_VIEW
@@ -52,9 +53,10 @@ export function onUpdateFieldAppointment(value, key){
 }
 
 export function onUpdateProfile(user){
+  var uid = firebase.auth().currentUser.uid;
   return {
     type: UPDATE_PROFILE,
-    payload:firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+    payload:firebase.database().ref('users/' + uid).set({
        name: user.name,
        email: user.email,
        homeAddress:user.homeAddress,
@@ -102,5 +104,16 @@ export function onChangeProfileView(value){
   return {
     type: CHANGE_PROFILE_VIEW,
     payload:value
+  };
+}
+
+export function onCancelAppoitment(key){
+  var updates = {};
+  var uid = firebase.auth().currentUser.uid;
+  updates['/appointments/' + key] = null;
+  updates['users/' + uid + '/appointments/' + key] = null;
+  return {
+    type: CANCEL_APPOINTMENT,
+    payload:firebase.database().ref().update(updates),
   };
 }

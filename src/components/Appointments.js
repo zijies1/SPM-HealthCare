@@ -1,13 +1,26 @@
 import React from "react";
+import {connect} from "react-redux";
+import {onCancelAppoitment} from "../actions/index.js";
 
-export default class Appointments extends React.Component {
+
+class Appointments extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.handleSumbit = () => ev =>{
+      ev.preventDefault();
+      this.props.onCancelAppoitment(ev.target.id);
+      window.location.reload();
+    }
+  }
 
   renderAppmt(){
     var cards = [];
     for (var key in this.props.appointments){
       const appmt = this.props.appointments[key];
       cards.push(
-        <div className="card bg-white mb-3" key={key}>
+        <form onSubmit={this.handleSumbit()} key={key} id={key}>
+        <div className="card bg-white mb-3">
          <div className="card-header">
            Appointment
          </div>
@@ -37,9 +50,11 @@ export default class Appointments extends React.Component {
            </div>
          </div>
          <hr/>
-          <a href="#" className="btn btn-primary">Cancel</a>
+         <button href="#" className="btn btn-primary">Cancel</button>
          </div>
-       </div>);
+       </div>
+       </form>
+     );
     }
     return cards;
   }
@@ -52,3 +67,5 @@ export default class Appointments extends React.Component {
     );
   }
 }
+
+export default connect(null,{onCancelAppoitment})(Appointments);

@@ -8,7 +8,8 @@ import {
   UPDATE_PASSWORD,
   CLEAN_REGISTER_FIELDS,
   MAKE_APPOINTMENT,
-  SHOW_MODAL
+  SHOW_MODAL,
+  CANCEL_APPOINTMENT
 } from './constants/actionTypes';
 import firebase from "./reducers/firebase";
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { onUpdateField } from "../actions/index.js";
 import About from "./About";
 import Banner from "./Banner";
@@ -11,6 +12,10 @@ import AppointmentForm from "./AppointmentForm";
 class Appointment extends React.Component {
   // render
   render() {
+    if (!this.props.loggedIn) {
+      return <Redirect to='/' />
+    }
+
     return (
       <div>
         <Header/>
@@ -62,7 +67,10 @@ class Appointment extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ user:state.auth.user });
+const mapStateToProps = state => ({
+  user:state.auth.user,
+  loggedIn:state.auth.loggedIn
+ });
 
 
 export default connect(mapStateToProps,null)(Appointment);
