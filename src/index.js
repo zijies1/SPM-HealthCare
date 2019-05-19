@@ -18,11 +18,11 @@ import firebase from "./reducers/firebase";
 if(!store.getState().auth.loggedIn){
   firebase.auth().onAuthStateChanged((user)=> {
     if (user) {
-      store.dispatch({ type: ASYNC_START});
       firebase.database().ref('/users/' + user.uid).once('value').then((snapshot)=> {
         store.dispatch({
           type: GET_PROFESSIONALS,
-          payload:firebase.database().ref('/professionals').once('value')
+          payload:firebase.database().ref('/professionals').once('value'),
+          snapshot:snapshot
         });
         let userInfo = snapshot.val();
         if(userInfo.role === "admin"){
@@ -31,8 +31,6 @@ if(!store.getState().auth.loggedIn){
             payload:firebase.database().ref('/appointments').once('value')
           });
         }
-        store.dispatch({ type: LOGIN, payload:snapshot.val()});
-        store.dispatch({ type: ASYNC_END });
       }).catch(error =>{
         store.dispatch({ type: ASYNC_END });
         store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });

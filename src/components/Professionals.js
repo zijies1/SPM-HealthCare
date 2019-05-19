@@ -20,35 +20,34 @@ class Professionals extends React.Component {
     console.log(this.props.professionals);
     return (
       <div>
-        <button href="#" className="btn btn-primary">Add</button>
+        <button href="#" className="btn btn-primary">Add New Professional</button>
         <hr/>
         {this.props.professionals.map(professional =>{
-          return(<form onSubmit={this.handleSumbit()} key={key} id={key}>
+          return(<form onSubmit={this.handleSumbit()} key={professional.name}>
           <div className="card bg-white mb-3">
            <div className="card-header">
-             Doctor:{professional.name}
+             <strong>{professional.name}</strong>
            </div>
           <div>
-            <div className="form-group row">
+            <div className="form-group row pl-2">
              <label className="col-sm-4 col-form-label"><strong>Type:</strong></label>
              <div className="col-sm-8">
                <input type="text" readOnly className="form-control-plaintext" value={professional.type}/>
              </div>
            </div>
-            <div className="form-group row">
+            <div className="form-group row pl-2">
              <label className="col-sm-4 col-form-label"><strong>Charge($(AUS) per hour):</strong></label>
              <div className="col-sm-8">
                <input type="text" readOnly className="form-control-plaintext" value={professional.charge}/>
              </div>
             </div>
-            <div className="form-group row">
+            <div className="form-group row pl-2">
              <label className="col-sm-4 col-form-label"><strong>Email:</strong></label>
              <div className="col-sm-8">
                <input type="text" readOnly className="form-control-plaintext" value={professional.email}/>
              </div>
            </div>
-           <hr/>
-           <button href="#" className="btn btn-primary">Delete</button>
+           <button href="#" className="btn btn-primary m-2">Delete</button>
            </div>
          </div>
          </form>)

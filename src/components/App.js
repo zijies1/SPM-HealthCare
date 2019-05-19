@@ -8,19 +8,23 @@ import NotFound from "./NotFound";
 import Appointment from "./Appointment";
 import Profile from "./Profile";
 import AdminPage from "./AdminPage";
+import Loading from "./Loading";
 
 export default class App extends React.Component {
   render() {
     return (
-      <Router>
-          <div>
-            <Route exact path="/" component={Home}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/profile" component={Profile}/>
-            <Route path="/appointment" component={Appointment}/>
-            <Route path="/admin" component={AdminPage}/>
-          </div>
-      </Router>
+      <div>
+        <Router>
+            <div>
+              <Route exact path="/" component={Home}/>
+              <Route path="/login" component={Login}/>
+              <Route path="/profile" component={Profile}/>
+              <Route path="/appointment" component={Appointment}/>
+              <Route path="/admin" component={AdminPage}/>
+            </div>
+        </Router>
+        <Loading/>
+      </div>
     );
   }
 }

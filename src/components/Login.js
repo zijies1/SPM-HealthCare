@@ -5,7 +5,6 @@ import style from "./style.css";
 import logo from "../media/img/logo1.svg";
 import { onSubmit,onUpdateField } from "../actions/index.js";
 import ErrorModal from "./ErrorModal";
-import Loading from "./Loading";
 
 import {
   UPDATE_FIELD_AUTH,
@@ -80,7 +79,6 @@ class Login extends React.Component {
 
         </div>
         <ErrorModal/>
-        <Loading/>
     </div>
     );
   }

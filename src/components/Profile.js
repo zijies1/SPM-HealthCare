@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import Banner from "./Banner";
 import Header from "./Header";
 import Footer from "./Footer";
-import Loading from "./Loading";
 import PorfileForm from "./ProfileForm";
 import Appointments from "./Appointments";
 import {onChangeProfileView} from "../actions";
@@ -45,7 +44,6 @@ class Profile extends React.Component {
     return (
       <div>
         <Header/>
-        <Loading/>
         <hr className="mt-100"/>
         <Banner section = "Account"/>
         <div className="mb-5 fadeIn">

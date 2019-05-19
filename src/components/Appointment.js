@@ -6,7 +6,6 @@ import About from "./About";
 import Banner from "./Banner";
 import Header from "./Header";
 import Footer from "./Footer";
-import Loading from "./Loading";
 import AppointmentForm from "./AppointmentForm";
 
 class Appointment extends React.Component {
@@ -19,7 +18,6 @@ class Appointment extends React.Component {
     return (
       <div>
         <Header/>
-        <Loading />
         <hr className="mt-100"/>
         <Banner section = "Appointment"/>
         <div className=" container text-dark pb-5 fadeIn">

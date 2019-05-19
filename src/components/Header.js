@@ -8,7 +8,18 @@ class Header extends React.Component {
   // render
 
   renderLogin(){
-    if(this.props.auth.loggedIn){
+    if(this.props.auth.user.role){
+      return(
+        <li className="nav-item dropdown">
+          <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {this.props.auth.email}
+          </div>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <button className="dropdown-item" onClick={this.props.logout} >Logout</button>
+          </div>
+        </li>
+      )
+    }else if(this.props.auth.loggedIn){
       return(
         <li className="nav-item dropdown">
           <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

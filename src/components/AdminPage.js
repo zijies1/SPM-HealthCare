@@ -28,7 +28,7 @@ class AdminPage extends React.Component {
     console.log(this.props.appmts);
     console.log(this.props.professionals);
     if(this.props.profile.show === pro){
-      // return(< Professionals professionals={this.props.professionals}/>)
+      return(< Professionals professionals={this.props.professionals}/>)
     }else{
       return(< Appointments appointments={this.props.appmts}/>)
     }
@@ -36,9 +36,10 @@ class AdminPage extends React.Component {
   }
   // render
   render() {
-    if (!this.props.auth.user.role || !this.props.loggedIn) {
-      // replace with not found page later
-      return (<span>not found</span>);
+    if (!this.props.loggedIn) {
+      return <Redirect to='/' />
+    }else if (!this.props.auth.user.role){
+      return (<span className="text-dark display-4 text-center p-4">not found</span>);
     }
     const {profile,appointments} = this.props.profile;
     const name = itemClassName + profile;
@@ -46,7 +47,6 @@ class AdminPage extends React.Component {
     return (
       <div>
         <Header/>
-        <Loading/>
         <hr className="mt-5"/>
         <div className="mt-5 fadeIn">
           <div className="mt-5 container text-dark">

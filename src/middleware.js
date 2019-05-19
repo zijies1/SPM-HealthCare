@@ -59,7 +59,6 @@ const promiseMiddleware = store => next => action => {
         );
       }else{
          action.payload = null;
-         store.dispatch({ type: ASYNC_END});
          if(action.type===GET_PROFESSIONALS || action.type===GET_APPOINTMENTS){
            console.log(action.type,res.val());
            const getValues = res.val();
@@ -69,12 +68,14 @@ const promiseMiddleware = store => next => action => {
            }
            if(action.type===GET_PROFESSIONALS){
              store.dispatch({ type:GET_PROFESSIONALS, doctors:values});
+             store.dispatch({ type: LOGIN, payload:action.snapshot.val()});
            }else{
              store.dispatch({ type:GET_APPOINTMENTS, appointments:getValues});
            }
          }else{
            store.dispatch(action);
          }
+         store.dispatch({ type: ASYNC_END});
        }
        setTimeout(10);
       },

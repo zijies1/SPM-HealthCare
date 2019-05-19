@@ -5,7 +5,6 @@ import About from "./About";
 import Banner from "./Banner";
 import Header from "./Header";
 import Footer from "./Footer";
-import Loading from "./Loading";
 
 
 class AppointmentForm extends React.Component {
@@ -30,9 +29,9 @@ class AppointmentForm extends React.Component {
   }
 
   maybeChangeName(type){
-    const {doctors} = this.props.appmt;
+    const {professionals} = this.props.appmt;
     var docts = [];
-    doctors.map(doc=>{
+    professionals.map(doc=>{
       if(doc.type === type){
         docts.push(doc);
       }
@@ -42,7 +41,7 @@ class AppointmentForm extends React.Component {
 
   // render
   render() {
-    const {types,doctors,times} = this.props.appmt;
+    const {types,professionals,times} = this.props.appmt;
     const {type,name,time,message} = this.props.appmt.fileds;
 
     console.log(type);
@@ -63,7 +62,7 @@ class AppointmentForm extends React.Component {
             <div className="form-group">
                 <label className="control-label">Doctor(s)</label>
                 <select className="form-control" value={name} onChange={this.changeName} required>
-                  {doctors.map(doc=>{
+                  {professionals.map(doc=>{
                     if(doc.type === this.props.appmt.fileds.type){
                       return (<option key={doc.name}>{doc.name} (${doc.charge} per hour)</option>)
                     }
