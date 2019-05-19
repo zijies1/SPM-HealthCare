@@ -49,7 +49,7 @@ export default (state =initialstate, action) => {
     case UPDATE_FIELD_APPOINTMENT:
       return { ...state,fileds: {...state.fileds,[action.key]: action.value}};
     case GET_PROFESSIONALS:
-      return { ...state,doctors:action.doctors};
+      return { ...state,professionals:action.doctors};
     // ADMIN ONLY
     case GET_APPOINTMENTS:
       return { ...state,appointments:action.appointments};

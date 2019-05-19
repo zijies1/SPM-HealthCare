@@ -1,4 +1,6 @@
 import React from "react";
+import {connect} from "react-redux";
+import { Redirect } from 'react-router-dom';
 import style from "./style.css";
 import About from "./About";
 import Experts from "./Experts";
@@ -12,6 +14,9 @@ class Home extends React.Component {
 
   // render
   render() {
+    if(this.props.auth.user.role){
+      return <Redirect to='/admin' />
+    }
     var backgroundImage3 = "https://www.hospitalityinhealthcare.com/wp-content/uploads/2017/03/1-WELCOME-IMAGE_medical-personnel-consult.jpg";
     return (
       <div>
@@ -74,4 +79,8 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  auth:state.auth
+ });
+
+export default connect(mapStateToProps,null)(Home);

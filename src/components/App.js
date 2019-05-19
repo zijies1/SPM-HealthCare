@@ -7,6 +7,7 @@ import Login from "./Login";
 import NotFound from "./NotFound";
 import Appointment from "./Appointment";
 import Profile from "./Profile";
+import AdminPage from "./AdminPage";
 
 export default class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ export default class App extends React.Component {
             <Route path="/login" component={Login}/>
             <Route path="/profile" component={Profile}/>
             <Route path="/appointment" component={Appointment}/>
+            <Route path="/admin" component={AdminPage}/>
           </div>
       </Router>
     );

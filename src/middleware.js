@@ -39,7 +39,6 @@ function handleRegister(store,action,uid){
 };
 
 const promiseMiddleware = store => next => action => {
-  console.log(action);
   if (isPromise(action.payload)) {
     store.dispatch({ type: ASYNC_START, subtype: action.type });
     action.payload.then(
@@ -59,20 +58,19 @@ const promiseMiddleware = store => next => action => {
           }
         );
       }else{
-         console.log(action);
          action.payload = null;
          store.dispatch({ type: ASYNC_END});
          if(action.type===GET_PROFESSIONALS || action.type===GET_APPOINTMENTS){
            console.log(action.type,res.val());
            const getValues = res.val();
            const values = [];
-           for (var key in values){
-             values.push(values[key]);
+           for (var key in getValues){
+             values.push(getValues[key]);
            }
            if(action.type===GET_PROFESSIONALS){
              store.dispatch({ type:GET_PROFESSIONALS, doctors:values});
            }else{
-             store.dispatch({ type:GET_APPOINTMENTS, appointments:values});
+             store.dispatch({ type:GET_APPOINTMENTS, appointments:getValues});
            }
          }else{
            store.dispatch(action);
