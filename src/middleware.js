@@ -9,7 +9,9 @@ import {
   CLEAN_REGISTER_FIELDS,
   MAKE_APPOINTMENT,
   SHOW_MODAL,
-  CANCEL_APPOINTMENT
+  CANCEL_APPOINTMENT,
+  GET_PROFESSIONALS,
+  GET_APPOINTMENTS
 } from './constants/actionTypes';
 import firebase from "./reducers/firebase";
 
@@ -60,12 +62,18 @@ const promiseMiddleware = store => next => action => {
          console.log(action);
          action.payload = null;
          store.dispatch({ type: ASYNC_END});
-         if(action.type===MAKE_APPOINTMENT){
-           store.dispatch({ type:MAKE_APPOINTMENT, appointments:action.appmt,key:action.key});
-           store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:"Success!"} });
-         }else if(action.type===CANCEL_APPOINTMENT){
-           store.dispatch({ type:CANCEL_APPOINTMENT, key:action.key});
-           store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:"Success!"} });
+         if(action.type===GET_PROFESSIONALS || action.type===GET_APPOINTMENTS){
+           console.log(action.type,res.val());
+           const getValues = res.val();
+           const values = [];
+           for (var key in values){
+             values.push(values[key]);
+           }
+           if(action.type===GET_PROFESSIONALS){
+             store.dispatch({ type:GET_PROFESSIONALS, doctors:values});
+           }else{
+             store.dispatch({ type:GET_APPOINTMENTS, appointments:values});
+           }
          }else{
            store.dispatch(action);
          }

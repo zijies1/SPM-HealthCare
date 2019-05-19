@@ -11,9 +11,9 @@ class Header extends React.Component {
     if(this.props.auth.loggedIn){
       return(
         <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {this.props.auth.email}
-          </a>
+          </div>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <Link to="/profile"><div className="dropdown-item">Account</div></Link>
             <Link to="/appointment"><div className="dropdown-item">Make An Appointment</div></Link>

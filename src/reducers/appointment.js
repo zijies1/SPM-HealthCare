@@ -1,5 +1,7 @@
 import {
-  UPDATE_FIELD_APPOINTMENT
+  UPDATE_FIELD_APPOINTMENT,
+  GET_PROFESSIONALS,
+  GET_APPOINTMENTS
 } from '../constants/actionTypes';
 
 
@@ -33,15 +35,12 @@ const doctors = [
 const times = ["9:00 to 10:00","10:00 to 11:00","11:00 to 12:00"];
 const initialstate = {
   fileds:{
-    type:types[0],
-    name:doctors[0].name,
-    charge:doctors[0].charge,
+    type:"choose type",
     time:times[0],
     message:""
   },
   times,
-  types:types,
-  doctors:doctors
+  types:types
 };
 
 
@@ -49,6 +48,11 @@ export default (state =initialstate, action) => {
   switch (action.type) {
     case UPDATE_FIELD_APPOINTMENT:
       return { ...state,fileds: {...state.fileds,[action.key]: action.value}};
+    case GET_PROFESSIONALS:
+      return { ...state,doctors:action.doctors};
+    // ADMIN ONLY
+    case GET_APPOINTMENTS:
+      return { ...state,appointments:action.appointments};
     default:
       return state;
   }

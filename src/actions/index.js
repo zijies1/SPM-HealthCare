@@ -11,7 +11,8 @@ import {
   CANCEL_APPOINTMENT,
   SHOW_MODAL,
   UPDATE_FIELD_APPOINTMENT,
-  CHANGE_PROFILE_VIEW
+  CHANGE_PROFILE_VIEW,
+  GET_PROFESSIONALS
 } from '../constants/actionTypes';
 import firebase from "../reducers/firebase.js";
 
@@ -118,5 +119,12 @@ export function onCancelAppoitment(key){
     type: CANCEL_APPOINTMENT,
     payload:firebase.database().ref().update(updates),
     key
+  };
+}
+
+export function onGetProfessionals(){
+  return {
+    type: GET_PROFESSIONALS,
+    payload:firebase.database().ref('/professionals').once('value')
   };
 }

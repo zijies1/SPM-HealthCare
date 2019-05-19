@@ -1,7 +1,6 @@
 import * as firebase from 'firebase';
 import firestore from 'firebase/firestore';
 
-
 const config = {
   apiKey: "AIzaSyBoUjdGeP5LMbEcs17SHqda7wGOcFi-mwA",
   authDomain: "spm-healthcare.firebaseapp.com",

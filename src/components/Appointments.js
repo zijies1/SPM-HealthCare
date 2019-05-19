@@ -10,6 +10,7 @@ class Appointments extends React.Component {
     this.handleSumbit = () => ev =>{
       ev.preventDefault();
       this.props.onCancelAppoitment(ev.target.id,this.props.appointments);
+      window.location.reload();
     }
   }
 

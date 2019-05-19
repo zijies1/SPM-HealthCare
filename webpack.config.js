@@ -1,6 +1,23 @@
 const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
+
+const genPackage = () => ({
+  name: 'functions',
+  private: true,
+  main: 'index.js',
+  license: 'MIT',
+  dependencies: externals.reduce(
+    (acc, name) =>
+      Object.assign({}, acc, {
+        [name]:
+          pkg.dependencies[name] ||
+          pkg.devDependencies[name]
+      }),
+    {}
+  )
+})
+
 module.exports = {
   entry: './src/index.js',
   output: {
