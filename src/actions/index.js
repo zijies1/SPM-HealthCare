@@ -15,9 +15,24 @@ import {
   GET_PROFESSIONALS,
   ADD_PROFESSIONAL,
   UPDATE_FIELD_PROFESSIONAL,
-  DELETE_PROFESSIONAL
+  DELETE_PROFESSIONAL,
+  SEND_EMAIL
 } from '../constants/actionTypes';
 import firebase from "../reducers/firebase.js";
+import * as emailjs from "emailjs-com";
+
+export function sgMail(appmt,email,subject){
+  var templateParams = {
+    from_name:"admin@spm.com",
+    to_name:email,
+    subject:subject,
+    appmt:appmt
+  }
+  return {
+    type: SEND_EMAIL,
+    payload:emailjs.send("gmail","template_bONg9oEe",templateParams,"user_iBWZxTIHFpN0Ua2AFa3bB")
+  }
+};
 
 export function onSubmit(user) {
   return {
@@ -85,18 +100,20 @@ export function onUpdateFieldResgiter(value, key){
   };
 }
 
-export function onMakeAppointment(appmt){
+export function onMakeAppointment(appmt,professional){
   var uid = firebase.auth().currentUser.uid;
   var newPostKey = firebase.database().ref().child('posts').push().key;
   var updates = {};
   updates['/appointments/' + newPostKey] = appmt;
   appmt["userEmail"] = firebase.auth().currentUser.email;
+  appmt["professionalEmail"] = professional.email;
   updates['users/' + uid + '/appointments/' + newPostKey] = appmt;
   return {
     type: MAKE_APPOINTMENT,
     payload:firebase.database().ref().update(updates),
     key:newPostKey,
-    appmt
+    appmt,
+    professional
   };
 }
 
@@ -114,7 +131,7 @@ export function onChangeProfileView(value){
   };
 }
 
-export function onCancelAppoitment(key){
+export function onCancelAppoitment(key,appmt){
   var updates = {};
   var uid = firebase.auth().currentUser.uid;
   updates['/appointments/' + key] = null;
@@ -122,7 +139,8 @@ export function onCancelAppoitment(key){
   return {
     type: CANCEL_APPOINTMENT,
     payload:firebase.database().ref().update(updates),
-    key
+    key,
+    email:appmt.professionalEmail
   };
 }
 

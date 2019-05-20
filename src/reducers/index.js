@@ -4,7 +4,6 @@ import appointment from "./appointment.js";
 import profile from "./profile.js";
 import firebase from "./firebase";
 import professional from "./professional";
-
 // main reducers
 export default combineReducers({
   auth: auth,

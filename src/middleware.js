@@ -7,13 +7,16 @@ import {
   REGISTER,
   UPDATE_PASSWORD,
   CLEAN_REGISTER_FIELDS,
-  MAKE_APPOINTMENT,
   SHOW_MODAL,
   CANCEL_APPOINTMENT,
+  MAKE_APPOINTMENT,
   GET_PROFESSIONALS,
-  GET_APPOINTMENTS
+  DELETE_PROFESSIONAL,
+  GET_APPOINTMENTS,
+  SEND_EMAIL
 } from './constants/actionTypes';
 import firebase from "./reducers/firebase";
+
 
 function handleRegister(store,action,uid){
   firebase.database().ref('users/' + uid).set({
@@ -40,6 +43,7 @@ function handleRegister(store,action,uid){
 
 const promiseMiddleware = store => next => action => {
   if (isPromise(action.payload)) {
+    console.log(action);
     store.dispatch({ type: ASYNC_START, subtype: action.type });
     action.payload.then(
       res => {
@@ -58,6 +62,7 @@ const promiseMiddleware = store => next => action => {
              error =>{
                store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
              });
+            store.dispatch({ type: ASYNC_END});
             break;
           case GET_PROFESSIONALS:
             const getValues = res.val();
@@ -68,17 +73,31 @@ const promiseMiddleware = store => next => action => {
             }
             store.dispatch({ type:GET_PROFESSIONALS, doctors:values.reverse()});
             store.dispatch({ type: LOGIN, payload:action.snapshot.val()});
+            store.dispatch({ type: ASYNC_END});
             break;
           case GET_APPOINTMENTS:
             const appmts = res.val();
             store.dispatch({ type:GET_APPOINTMENTS, appointments:appmts});
+            store.dispatch({ type: ASYNC_END});
             break;
+          case MAKE_APPOINTMENT:
+            console.log(action.type,MAKE_APPOINTMENT,action.appmt);
+            break;
+          case CANCEL_APPOINTMENT:
+            console.log(action.type,CANCEL_APPOINTMENT);
+            break;
+          case SEND_EMAIL:
+            console.log(SEND_EMAIL);
+            store.dispatch({ type: ASYNC_END});
+            window.location.reload();
+          case DELETE_PROFESSIONAL:
+            store.dispatch({ type: ASYNC_END});
+            window.location.reload();
           default:
             action.payload = null;
             store.dispatch(action);
             break;
         }
-        store.dispatch({ type: ASYNC_END});
         setTimeout(10);
       },
       error => {

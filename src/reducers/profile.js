@@ -2,7 +2,7 @@ import {
   CHANGE_PROFILE_VIEW
 } from '../constants/actionTypes';
 
-const shows = ["profile","appointments"];
+const shows = ["Profile","Appointments"];
 const initialstate = {
   show:shows[0],
   profile:"active"

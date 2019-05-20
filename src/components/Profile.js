@@ -16,16 +16,16 @@ class Profile extends React.Component {
     super(props);
     this.toProfile = () => ev => {
       ev.preventDefault();
-      this.props.onChangeProfileView("profile");
+      this.props.onChangeProfileView("Profile");
     }
     this.toAppointments = () => ev =>{
       ev.preventDefault();
-      this.props.onChangeProfileView("appointments");
+      this.props.onChangeProfileView("Appointments");
     }
   }
 
   renderInfo(){
-    const pro = "profile";
+    const pro = "Profile";
     if(this.props.profile.show === pro){
       return(<PorfileForm/>)
     }else{
@@ -45,7 +45,7 @@ class Profile extends React.Component {
       <div>
         <Header/>
         <hr className="mt-100"/>
-        <Banner section = "Account"/>
+        <Banner section = {this.props.profile.show}/>
         <div className="mb-5 fadeIn">
           <div className="container text-dark">
           	<div className="row">

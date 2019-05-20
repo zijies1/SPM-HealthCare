@@ -15,7 +15,6 @@ class Professionals extends React.Component {
     this.handleSumbit = () => ev =>{
       ev.preventDefault();
       this.props.onDelProfessional(ev.target.id);
-      window.location.reload();
     }
   }
 

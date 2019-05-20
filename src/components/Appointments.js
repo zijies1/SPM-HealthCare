@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {onCancelAppoitment} from "../actions/index.js";
+import {onCancelAppoitment,sgMail} from "../actions/index.js";
 
 
 class Appointments extends React.Component {
@@ -9,8 +9,10 @@ class Appointments extends React.Component {
     super(props);
     this.handleSumbit = () => ev =>{
       ev.preventDefault();
-      this.props.onCancelAppoitment(ev.target.id,this.props.appointments);
-      window.location.reload();
+      const appmt = this.props.appointments[ev.target.id];
+      this.props.onCancelAppoitment(ev.target.id,this.props.appointments[ev.target.id]);
+      this.props.sgMail(appmt,appmt.professionalEmail,"Appointment Cancellation");
+
     }
   }
 
@@ -74,4 +76,4 @@ class Appointments extends React.Component {
   }
 }
 
-export default connect(null,{onCancelAppoitment})(Appointments);
+export default connect(null,{onCancelAppoitment,sgMail})(Appointments);

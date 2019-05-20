@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { onUpdateFieldAppointment, onMakeAppointment} from "../actions/index.js";
+import {
+  onUpdateFieldAppointment,
+  onMakeAppointment,
+  sgMail} from "../actions/index.js";
 import About from "./About";
 import Banner from "./Banner";
 import Header from "./Header";
@@ -25,8 +28,15 @@ class AppointmentForm extends React.Component {
     this.changeMsg = ev => this.props.onUpdateFieldAppointment(ev.target.value,"message");
     this.submitForm = () => ev =>{
       ev.preventDefault();
-      this.props.onMakeAppointment(this.props.appmt.fileds);
-      window.location.reload();
+      var professional = null;
+      this.props.professional.professionals.map(doc=>{
+        if(doc.name === this.props.appmt.fileds.name){
+          professional = doc;
+        }
+      });
+      this.props.onMakeAppointment(this.props.appmt.fileds,professional);
+      this.props.sgMail(this.props.appmt,professional.email,"New Appointment");
+      this.props.sgMail(this.props.appmt,this.props.appmt.userEmail,"New Appointment");
     };
   }
 
@@ -75,7 +85,7 @@ class AppointmentForm extends React.Component {
                 <select className="form-control" value={name} onChange={this.changeName} required>
                   {professionals.map(doc=>{
                     if(doc.type === this.props.appmt.fileds.type){
-                      return (<option key={doc.name}>{doc.name})</option>)
+                      return (<option key={doc.name}>{doc.name}</option>)
                     }
                    })}
                 </select>
@@ -120,4 +130,7 @@ const mapStateToProps = state => ({
  });
 
 
-export default connect(mapStateToProps,{onUpdateFieldAppointment,onMakeAppointment})(AppointmentForm);
+export default connect(mapStateToProps,{
+  onUpdateFieldAppointment,
+  onMakeAppointment,
+  sgMail})(AppointmentForm);
