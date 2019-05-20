@@ -14,10 +14,12 @@ class AppointmentForm extends React.Component {
       const docts = this.maybeChangeName(ev.target.value);
       this.props.onUpdateFieldAppointment(ev.target.value,"type");
       this.props.onUpdateFieldAppointment(docts[0].name,"name");
+      this.onChangeCharge(docts[0].name);
     };
     this.changeName = ev => {
       const docts = this.maybeChangeName(this.props.appmt.fileds.type);
       this.props.onUpdateFieldAppointment(ev.target.value,"name");
+      this.onChangeCharge(ev.target.value);
     }
     this.changeTime = ev => this.props.onUpdateFieldAppointment(ev.target.value,"time");
     this.changeMsg = ev => this.props.onUpdateFieldAppointment(ev.target.value,"message");
@@ -30,7 +32,7 @@ class AppointmentForm extends React.Component {
 
   maybeChangeName(type){
     var docts = [];
-    this.props.professionals.map(doc=>{
+    this.props.professional.professionals.map(doc=>{
       if(doc.type === type){
         docts.push(doc);
       }
@@ -38,10 +40,19 @@ class AppointmentForm extends React.Component {
     return docts;
   }
 
+  onChangeCharge(name){
+    this.props.professional.professionals.map(doc=>{
+      if(doc.name === name){
+        console.log("doc.charge",doc.charge);
+        this.props.onUpdateFieldAppointment(doc.charge,"charge");
+      }
+    });
+  }
+
   // render
   render() {
     const {times} = this.props.appmt;
-    const {type,name,time,message} = this.props.appmt.fileds;
+    const {type,name,time,message,charge} = this.props.appmt.fileds;
     const {types,professionals} = this.props.professional;
 
     console.log(professionals,types);
@@ -58,16 +69,22 @@ class AppointmentForm extends React.Component {
                 </select>
             </div>
           </div>
-          <div className="col-md-8">
+          <div className="col-md-4">
             <div className="form-group">
                 <label className="control-label">Doctor(s)</label>
                 <select className="form-control" value={name} onChange={this.changeName} required>
                   {professionals.map(doc=>{
                     if(doc.type === this.props.appmt.fileds.type){
-                      return (<option key={doc.name}>{doc.name} (${doc.charge} per hour)</option>)
+                      return (<option key={doc.name}>{doc.name})</option>)
                     }
                    })}
                 </select>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form-group">
+                <label className="control-label">Charge per hour</label>
+                <div className="form-control" >{charge}</div>
             </div>
           </div>
           <div className="col-md-4">
