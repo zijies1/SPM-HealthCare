@@ -14,7 +14,8 @@ import {
   CHANGE_PROFILE_VIEW,
   GET_PROFESSIONALS,
   ADD_PROFESSIONAL,
-  UPDATE_FIELD_PROFESSIONAL
+  UPDATE_FIELD_PROFESSIONAL,
+  DELETE_PROFESSIONAL
 } from '../constants/actionTypes';
 import firebase from "../reducers/firebase.js";
 
@@ -149,5 +150,15 @@ export function onAddProfessional(professional){
     payload:firebase.database().ref().update(updates),
     key:newPostKey,
     professional
+  };
+}
+
+export function onDelProfessional(key){
+  var updates = {};
+  updates['/professionals/' + key] = null;
+  return {
+    type: DELETE_PROFESSIONAL,
+    payload:firebase.database().ref().update(updates),
+    key
   };
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {onCancelAppoitment,onModal} from "../actions/index.js";
+import {onDelProfessional,onModal} from "../actions/index.js";
 import ProfessionalForm from "./ProfessionalForm";
 
 class Professionals extends React.Component {
@@ -14,7 +14,7 @@ class Professionals extends React.Component {
     }
     this.handleSumbit = () => ev =>{
       ev.preventDefault();
-      // this.props.onCancelAppoitment(ev.target.id,this.props.appointments);
+      this.props.onDelProfessional(ev.target.id);
       window.location.reload();
     }
   }
@@ -28,7 +28,7 @@ class Professionals extends React.Component {
         <button href="#" className="btn btn-primary" onClick={this.showForm()}>Add New Professional</button>
         <hr/>
         {this.props.professionals.map(professional =>{
-          return(<form onSubmit={this.handleSumbit()} key={professional.name}>
+          return(<form onSubmit={this.handleSumbit()} key={professional.key} id={professional.key}>
           <div className="card bg-white mb-3">
            <div className="card-header">
              <strong>{professional.name}</strong>
@@ -52,7 +52,7 @@ class Professionals extends React.Component {
                <input type="text" readOnly className="form-control-plaintext" value={professional.email}/>
              </div>
            </div>
-           <button href="#" className="btn btn-primary m-2">Delete</button>
+           <button href="#" className="btn btn-primary m-2" >Delete</button>
            </div>
          </div>
          </form>)
@@ -62,4 +62,4 @@ class Professionals extends React.Component {
   }
 }
 
-export default connect(null,{onCancelAppoitment,onModal})(Professionals);
+export default connect(null,{onDelProfessional,onModal})(Professionals);

@@ -63,9 +63,10 @@ const promiseMiddleware = store => next => action => {
             const getValues = res.val();
             const values = [];
             for (var key in getValues){
+              getValues[key]["key"] = key;
               values.push(getValues[key]);
             }
-            store.dispatch({ type:GET_PROFESSIONALS, doctors:values});
+            store.dispatch({ type:GET_PROFESSIONALS, doctors:values.reverse()});
             store.dispatch({ type: LOGIN, payload:action.snapshot.val()});
             break;
           case GET_APPOINTMENTS:

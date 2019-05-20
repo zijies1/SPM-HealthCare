@@ -1,7 +1,8 @@
 import {
   GET_PROFESSIONALS,
   ADD_PROFESSIONAL,
-  UPDATE_FIELD_PROFESSIONAL
+  UPDATE_FIELD_PROFESSIONAL,
+  DELETE_PROFESSIONAL
 } from '../constants/actionTypes';
 
 const types = ["podiatrist", "naturopath", "chiropractor"];
@@ -26,7 +27,9 @@ export default (state =initialstate, action) => {
       return { ...state,professionals:action.doctors};
       // ADMIN ONLY
     case ADD_PROFESSIONAL:
+      // currently this is not working since refreshing page is activated
       return { ...state,professionals:[...state.professionals,action.professional]};
+    case DELETE_PROFESSIONAL:
     default:
       return state;
   }

@@ -73,6 +73,7 @@ export default (state =initialstate, action) => {
                     }
               };
     case MAKE_APPOINTMENT:
+      // currently this is not working since refreshing page is activated
       console.log(MAKE_APPOINTMENT,action);
       return {...state,
               user:{...state.user,
