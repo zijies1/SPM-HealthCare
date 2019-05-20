@@ -1,13 +1,17 @@
 import React from "react";
 import {connect} from "react-redux";
-import {onCancelAppoitment} from "../actions/index.js";
-
+import {onCancelAppoitment,onModal} from "../actions/index.js";
+import ProfessionalForm from "./ProfessionalForm";
 
 class Professionals extends React.Component {
 
   constructor(props){
     super(props);
     console.log(this.props.professionals);
+    this.showForm = () => ev => {
+      ev.preventDefault();
+      this.props.onModal({ show: true });
+    }
     this.handleSumbit = () => ev =>{
       ev.preventDefault();
       // this.props.onCancelAppoitment(ev.target.id,this.props.appointments);
@@ -20,7 +24,8 @@ class Professionals extends React.Component {
     console.log(this.props.professionals);
     return (
       <div>
-        <button href="#" className="btn btn-primary">Add New Professional</button>
+        <ProfessionalForm/>
+        <button href="#" className="btn btn-primary" onClick={this.showForm()}>Add New Professional</button>
         <hr/>
         {this.props.professionals.map(professional =>{
           return(<form onSubmit={this.handleSumbit()} key={professional.name}>
@@ -57,4 +62,4 @@ class Professionals extends React.Component {
   }
 }
 
-export default connect(null,{onCancelAppoitment})(Professionals);
+export default connect(null,{onCancelAppoitment,onModal})(Professionals);

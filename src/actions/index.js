@@ -12,7 +12,9 @@ import {
   SHOW_MODAL,
   UPDATE_FIELD_APPOINTMENT,
   CHANGE_PROFILE_VIEW,
-  GET_PROFESSIONALS
+  GET_PROFESSIONALS,
+  ADD_PROFESSIONAL,
+  UPDATE_FIELD_PROFESSIONAL
 } from '../constants/actionTypes';
 import firebase from "../reducers/firebase.js";
 
@@ -126,5 +128,26 @@ export function onGetProfessionals(){
   return {
     type: GET_PROFESSIONALS,
     payload:firebase.database().ref('/professionals').once('value')
+  };
+}
+
+export function onUpdateFieldProfessional(value, key){
+  return {
+    type: UPDATE_FIELD_PROFESSIONAL,
+    key: key,
+    value
+  };
+}
+
+export function onAddProfessional(professional){
+  console.log("onAddProfessional",professional);
+  var newPostKey = firebase.database().ref().child('posts').push().key;
+  var updates = {};
+  updates['/professionals/' + newPostKey] = professional;
+  return {
+    type: ADD_PROFESSIONAL,
+    payload:firebase.database().ref().update(updates),
+    key:newPostKey,
+    professional
   };
 }

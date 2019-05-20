@@ -29,9 +29,8 @@ class AppointmentForm extends React.Component {
   }
 
   maybeChangeName(type){
-    const {professionals} = this.props.appmt;
     var docts = [];
-    professionals.map(doc=>{
+    this.props.professionals.map(doc=>{
       if(doc.type === type){
         docts.push(doc);
       }
@@ -41,8 +40,9 @@ class AppointmentForm extends React.Component {
 
   // render
   render() {
-    const {types,professionals,times} = this.props.appmt;
+    const {times} = this.props.appmt;
     const {type,name,time,message} = this.props.appmt.fileds;
+    const {types,professionals} = this.props.professional;
 
     console.log(type);
     return (
@@ -98,7 +98,8 @@ class AppointmentForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  appmt:state.appointment
+  appmt:state.appointment,
+  professional:state.professional
  });
 
 

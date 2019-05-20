@@ -43,41 +43,42 @@ const promiseMiddleware = store => next => action => {
     store.dispatch({ type: ASYNC_START, subtype: action.type });
     action.payload.then(
       res => {
-        if (action.type === REGISTER){
-          handleRegister(store,action,res.user.uid);
-        }else if (action.type === LOGIN){
-         firebase.database().ref('users/' + res.user.uid).once('value').then(
-          snapshot => {
-            store.dispatch({
-              type: LOGIN,
-              payload:snapshot.val()
-            });
-          },
-          error =>{
-            store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
-          }
-        );
-      }else{
-         action.payload = null;
-         if(action.type===GET_PROFESSIONALS || action.type===GET_APPOINTMENTS){
-           console.log(action.type,res.val());
-           const getValues = res.val();
-           const values = [];
-           for (var key in getValues){
-             values.push(getValues[key]);
-           }
-           if(action.type===GET_PROFESSIONALS){
-             store.dispatch({ type:GET_PROFESSIONALS, doctors:values});
-             store.dispatch({ type: LOGIN, payload:action.snapshot.val()});
-           }else{
-             store.dispatch({ type:GET_APPOINTMENTS, appointments:getValues});
-           }
-         }else{
-           store.dispatch(action);
-         }
-         store.dispatch({ type: ASYNC_END});
-       }
-       setTimeout(10);
+        switch (action.type) {
+          case REGISTER:
+            handleRegister(store,action,res.user.uid);
+            break;
+          case LOGIN:
+            firebase.database().ref('users/' + res.user.uid).once('value').then(
+             snapshot => {
+               store.dispatch({
+                 type: LOGIN,
+                 payload:snapshot.val()
+               });
+             },
+             error =>{
+               store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
+             });
+            break;
+          case GET_PROFESSIONALS:
+            const getValues = res.val();
+            const values = [];
+            for (var key in getValues){
+              values.push(getValues[key]);
+            }
+            store.dispatch({ type:GET_PROFESSIONALS, doctors:values});
+            store.dispatch({ type: LOGIN, payload:action.snapshot.val()});
+            break;
+          case GET_APPOINTMENTS:
+            const appmts = res.val();
+            store.dispatch({ type:GET_APPOINTMENTS, appointments:appmts});
+            break;
+          default:
+            action.payload = null;
+            store.dispatch(action);
+            break;
+        }
+        store.dispatch({ type: ASYNC_END});
+        setTimeout(10);
       },
       error => {
         store.dispatch({ type: ASYNC_END, promise: action.payload });
