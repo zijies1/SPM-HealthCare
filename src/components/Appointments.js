@@ -48,9 +48,15 @@ class Appointments extends React.Component {
            <div className="col-sm-8">
              <input type="text" readOnly className="form-control-plaintext" value={appmt.time}/>
            </div>
-         </div>
-         <hr/>
-         <button href="#" className="btn btn-primary">Cancel</button>
+          </div>
+          <div className="form-group row">
+           <label className="col-sm-4 col-form-label"><strong>User Email:</strong></label>
+           <div className="col-sm-8">
+             <input type="text" readOnly className="form-control-plaintext" value={appmt.userEmail}/>
+           </div>
+          </div>
+          <hr/>
+          <button href="#" className="btn btn-primary">Cancel</button>
          </div>
        </div>
        </form>

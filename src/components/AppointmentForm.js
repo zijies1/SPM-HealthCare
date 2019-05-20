@@ -44,7 +44,7 @@ class AppointmentForm extends React.Component {
     const {type,name,time,message} = this.props.appmt.fileds;
     const {types,professionals} = this.props.professional;
 
-    console.log(type);
+    console.log(professionals,types);
     return (
       <form onSubmit={this.submitForm()}>
         <div className="row">

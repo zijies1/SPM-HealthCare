@@ -90,6 +90,7 @@ export function onMakeAppointment(appmt){
   var newPostKey = firebase.database().ref().child('posts').push().key;
   var updates = {};
   updates['/appointments/' + newPostKey] = appmt;
+  appmt["userEmail"] = firebase.auth().currentUser.email;
   updates['users/' + uid + '/appointments/' + newPostKey] = appmt;
   return {
     type: MAKE_APPOINTMENT,
