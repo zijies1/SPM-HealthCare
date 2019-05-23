@@ -19,20 +19,36 @@ import {
   SEND_EMAIL
 } from '../constants/actionTypes';
 import firebase from "../reducers/firebase.js";
-import * as emailjs from "emailjs-com";
+import axios from "axios";
+
+const root = "http://127.0.0.1:5000/";
+const headers = {
+  "Content-Type":"application/json"
+};
 
 export function sgMail(appmt,email,subject){
-  var templateParams = {
+  var data= {
     from_name:"admin@spm.com",
     to_email:email,
     to_name:email,
     subject:subject,
     appmt:appmt.fields
   }
-  console.log(templateParams);
   return {
     type: SEND_EMAIL,
-    payload:emailjs.send("gmail","template_bONg9oEe",templateParams,"user_iBWZxTIHFpN0Ua2AFa3bB")
+    payload: fetch(root + "api/send", {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, cors, *same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrer: 'no-referrer', // no-referrer, *client
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+    })
   }
 };
 
