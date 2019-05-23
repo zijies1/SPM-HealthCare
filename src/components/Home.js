@@ -2,11 +2,11 @@ import React from "react";
 import {connect} from "react-redux";
 import { Redirect } from 'react-router-dom';
 import style from "./style.css";
-import About from "./About";
-import Experts from "./Experts";
-import RegisterForm from "./RegisterForm";
-import Header from "./Header";
-import Footer from "./Footer";
+import About from "./commons/About";
+import Experts from "./commons/Experts";
+import RegisterForm from "./forms/RegisterForm";
+import Header from "./commons/Header";
+import Footer from "./commons/Footer";
 
 // import backgroundImage3 from "../../../public/media/headerImage3.jpg";
 // Home page component

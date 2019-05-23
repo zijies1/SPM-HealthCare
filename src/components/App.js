@@ -1,16 +1,19 @@
 import React from "react";
 import "./style.css";
 import { BrowserRouter as Router, Route} from "react-router-dom";
+import { connect } from 'react-redux';
 import Home from "./Home";
-import MainContainer from "./MainContainer";
 import Login from "./Login";
 import NotFound from "./NotFound";
 import Appointment from "./Appointment";
 import Profile from "./Profile";
 import AdminPage from "./AdminPage";
-import Loading from "./Loading";
+import HomeLoading from "./commons/HomeLoading";
+import Loading from "./commons/Loading";
+import ErrorModal from "./commons/ErrorModal";
 
-export default class App extends React.Component {
+class App extends React.Component {
+
   render() {
     return (
       <div>
@@ -24,12 +27,14 @@ export default class App extends React.Component {
             </div>
         </Router>
         <Loading/>
+        <ErrorModal/>
       </div>
     );
   }
 }
 
-// <Route path="/login" component={Login}/>
-// <Route path="/appointment" component={AppointmentForm}/>
-// <Route path="/profile" component={Profile}/>
-// <Route path="*" component={NotFound}/>
+const mapStateToProps = state => ({
+  loading:state.auth.loading,
+});
+
+export default connect(mapStateToProps,null)(App);

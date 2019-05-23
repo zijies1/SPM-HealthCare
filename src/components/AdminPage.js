@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Header from "./Header";
-import Loading from "./Loading";
-import Professionals from "./Professionals";
-import Appointments from "./Appointments";
+import Header from "./commons/Header";
+import Loading from "./commons/Loading";
+import Professionals from "./commons/Professionals";
+import Appointments from "./commons/Appointments";
 import {onChangeProfileView} from "../actions";
 
 const itemClassName = "list-group-item list-group-item-action ";

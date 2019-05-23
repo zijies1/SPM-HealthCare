@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import {
   onUpdateFieldAppointment,
   onMakeAppointment,
-  sgMail} from "../actions/index.js";
-import About from "./About";
-import Banner from "./Banner";
-import Header from "./Header";
-import Footer from "./Footer";
+  sgMail
+} from "../../actions/index.js";
 
 
 class AppointmentForm extends React.Component {

@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { onUpdateFieldResgiter, onRegister } from "../actions/index.js";
-import ErrorModal from "./ErrorModal";
+import { onUpdateFieldResgiter, onRegister } from "../../actions/index.js";
 
 class RegisterForm extends React.Component {
 
@@ -76,7 +75,6 @@ class RegisterForm extends React.Component {
             required
           />
         </div>
-        <ErrorModal/>
         {this.showLoading()}
       </form>
     );

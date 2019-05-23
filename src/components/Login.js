@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom'
 import style from "./style.css";
 import logo from "../media/img/logo1.svg";
 import { onSubmit,onUpdateField } from "../actions/index.js";
-import ErrorModal from "./ErrorModal";
 
 import {
   UPDATE_FIELD_AUTH,
@@ -76,7 +75,6 @@ class Login extends React.Component {
           </div>
 
         </div>
-        <ErrorModal/>
     </div>
     );
   }

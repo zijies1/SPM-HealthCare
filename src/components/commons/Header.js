@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { logout } from "../actions/index.js";
+import { logout } from "../../actions/index.js";
 
 
 class Header extends React.Component {
@@ -45,7 +45,7 @@ class Header extends React.Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-light" id="main-nav">
         <div className="container">
-          <Link to="/"><div className="navbar-brand">Health Care</div></Link>
+          <a className="navbar-brand" href="/">Health Care</a>
           <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span className="navbar-toggler-icon"></span>
           </button>

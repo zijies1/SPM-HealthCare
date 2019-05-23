@@ -13,9 +13,21 @@ import {
  } from "./constants/actionTypes.js";
 import firebase from "./reducers/firebase";
 
-// firebase.auth().signOut();
+
+// render the main component
+function render(){
+  ReactDOM.render(
+    <Provider store={store}>
+      <App/>
+    </Provider>,
+    document.getElementById('app')
+  );
+}
+
 // This logic might be placed some better place
 if(!store.getState().auth.loggedIn){
+  store.dispatch({ type: ASYNC_START });
+  render();
   firebase.auth().onAuthStateChanged((user)=> {
     if (user) {
       firebase.database().ref('/users/' + user.uid).once('value').then((snapshot)=> {
@@ -36,15 +48,10 @@ if(!store.getState().auth.loggedIn){
         store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:error.message} });
       });
     } else {
+      store.dispatch({ type: ASYNC_END });
       console.log("no user signed in ");
     }
   });
+}else{
+  render();
 }
-
-// render the main component
-ReactDOM.render(
-  <Provider store={store}>
-    <App/>
-  </Provider>,
-  document.getElementById('app')
-);

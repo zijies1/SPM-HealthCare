@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { onUpdateField } from "../actions/index.js";
-import About from "./About";
-import Banner from "./Banner";
-import Header from "./Header";
-import Footer from "./Footer";
-import AppointmentForm from "./AppointmentForm";
+import About from "./commons/About";
+import Banner from "./commons/Banner";
+import Header from "./commons/Header";
+import Footer from "./commons/Footer";
+import AppointmentForm from "./forms/AppointmentForm";
 
 class Appointment extends React.Component {
   // render

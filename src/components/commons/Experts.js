@@ -1,9 +1,9 @@
 import React from "react";
 import Expert from "./Expert";
-import expert1 from "../media/img/d1.jpeg";
-import expert2 from "../media/img/d2.jpeg";
-import expert3 from "../media/img/d3.jpeg";
-import expert4 from "../media/img/d4.jpeg";
+import expert1 from "../../media/img/d1.jpeg";
+import expert2 from "../../media/img/d2.jpeg";
+import expert3 from "../../media/img/d3.jpeg";
+import expert4 from "../../media/img/d4.jpeg";
 
 export default class Experts extends React.Component {
   // render

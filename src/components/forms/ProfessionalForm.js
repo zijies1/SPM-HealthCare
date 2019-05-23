@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button} from 'react-bootstrap';
-import { onModal,onAddProfessional,onUpdateFieldProfessional } from '../actions';
+import {
+  onModal,
+  onAddProfessional,
+  onUpdateFieldProfessional
+} from '../../actions';
 
 class ProfessionalForm extends React.Component {
   constructor(props) {

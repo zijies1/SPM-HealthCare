@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {onDelProfessional,onModal} from "../actions/index.js";
-import ProfessionalForm from "./ProfessionalForm";
+import {onDelProfessional,onModal} from "../../actions/index.js";
+import ProfessionalForm from "../forms/ProfessionalForm";
 
 class Professionals extends React.Component {
 

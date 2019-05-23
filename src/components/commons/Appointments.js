@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {onCancelAppoitment,sgMail} from "../actions/index.js";
+import {onCancelAppoitment,sgMail} from "../../actions/index.js";
 
 
 class Appointments extends React.Component {

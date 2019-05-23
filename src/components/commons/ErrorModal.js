@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button} from 'react-bootstrap';
-import { onModal } from '../actions';
+import { onModal } from '../../actions';
 
 class ErrorModal extends React.Component {
   constructor(props) {

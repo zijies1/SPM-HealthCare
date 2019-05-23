@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Banner from "./Banner";
-import Header from "./Header";
-import PorfileForm from "./ProfileForm";
-import Appointments from "./Appointments";
+import Banner from "./commons/Banner";
+import Header from "./commons/Header";
+import PorfileForm from "./forms/ProfileForm";
+import Appointments from "./commons/Appointments";
 import {onChangeProfileView} from "../actions";
 
 const itemClassName = "list-group-item list-group-item-action ";

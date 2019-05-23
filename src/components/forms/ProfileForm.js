@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { onUpdateField,onUpdateProfile,onUpdatePassword,logout } from "../actions/index.js";
-import ErrorModal from "./ErrorModal";
+import {
+  onUpdateField,
+  onUpdateProfile,
+  onUpdatePassword,
+  logout
+} from "../../actions/index.js";
 
 class ProfileForm extends React.Component {
 
