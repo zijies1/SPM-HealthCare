@@ -93,8 +93,12 @@ const promiseMiddleware = store => next => action => {
           case DELETE_PROFESSIONAL:
             store.dispatch({ type: ASYNC_END});
             window.location.reload();
+          case LOGOUT:
+            store.dispatch({ type: ASYNC_END});
+            window.location.reload();
           default:
             action.payload = null;
+            store.dispatch({ type: ASYNC_END});
             store.dispatch(action);
             break;
         }

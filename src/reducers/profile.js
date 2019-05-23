@@ -5,7 +5,7 @@ import {
 const shows = ["Profile","Appointments"];
 const initialstate = {
   show:shows[0],
-  profile:"active"
+  Profile:"active"
 };
 
 

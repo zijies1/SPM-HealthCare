@@ -56,16 +56,14 @@ class Login extends React.Component {
           <form onSubmit={this.submitForm()}>
             <input
               type="text"
-              id="login"
-              className="fadeIn second"
+              className="loginInput fadeIn second"
               name="login"
               placeholder="login"
               onChange={this.changeEmail}
             />
             <input
-              type="text"
-              id="password"
-              className="fadeIn third"
+              type="password"
+              className="loginInput fadeIn third"
               name="login"
               placeholder="password"
               onChange={this.changePassword}

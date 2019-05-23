@@ -66,11 +66,22 @@ class Appointments extends React.Component {
     }
     return cards;
   }
+
+  renderNoAppmt(){
+    if(!this.props.appointments){
+      return (
+        <div className="p-3 display-4 text-muted fadeIn">
+          NO APPOINTMENTS YET
+        </div>
+      )
+    }
+  }
   // render
   render() {
     return (
       <div>
         {this.renderAppmt()}
+        {this.renderNoAppmt()}
       </div>
     );
   }

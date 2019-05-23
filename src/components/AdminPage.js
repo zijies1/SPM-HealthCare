@@ -15,16 +15,16 @@ class AdminPage extends React.Component {
     super(props);
     this.toProfile = () => ev => {
       ev.preventDefault();
-      this.props.onChangeProfileView("profile");
+      this.props.onChangeProfileView("Profile");
     }
     this.toAppointments = () => ev =>{
       ev.preventDefault();
-      this.props.onChangeProfileView("appointments");
+      this.props.onChangeProfileView("Appointments");
     }
   }
 
   renderInfo(){
-    const pro = "profile";
+    const pro = "Profile";
     console.log(this.props.appmts);
     console.log(this.props.professionals);
     if(this.props.profile.show === pro){
@@ -41,9 +41,8 @@ class AdminPage extends React.Component {
     }else if (!this.props.auth.user.role){
       return (<span className="text-dark display-4 text-center p-4">not found</span>);
     }
-    const {profile,appointments} = this.props.profile;
-    const name = itemClassName + profile;
-    const name2 = itemClassName + appointments;
+    const name = itemClassName + this.props.profile.Profile;
+    const name2 = itemClassName + this.props.profile.Appointments;
     return (
       <div>
         <Header/>

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Banner from "./Banner";
 import Header from "./Header";
-import Footer from "./Footer";
 import PorfileForm from "./ProfileForm";
 import Appointments from "./Appointments";
 import {onChangeProfileView} from "../actions";
@@ -38,9 +37,8 @@ class Profile extends React.Component {
     if (!this.props.loggedIn) {
       return <Redirect to='/' />
     }
-    const {profile,appointments} = this.props.profile;
-    const name = itemClassName + profile;
-    const name2 = itemClassName + appointments;
+    const name = itemClassName + this.props.profile.Profile;
+    const name2 = itemClassName + this.props.profile.Appointments;
     return (
       <div>
         <Header/>
@@ -61,7 +59,6 @@ class Profile extends React.Component {
           	</div>
           </div>
         </div>
-        <Footer/>
       </div>
 
     );

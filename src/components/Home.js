@@ -25,7 +25,7 @@ class Home extends React.Component {
             <div className="dark-overlay">
               <div className="home-inner container">
                 <div className="row">
-                  <div className="col-lg-8 d-none d-lg-block">
+                  <div className="col-lg-8 d-none d-lg-block fadeInDown">
                     <h1 className="display-4">Better
                       <strong> Health</strong> Better
                       <strong> Life</strong>
@@ -58,7 +58,7 @@ class Home extends React.Component {
                     </div>
                   </div>
 
-                  <div className="col-lg-4">
+                  <div className="col-lg-4 fadeIn">
                     <div className="card bg-primary text-center card-form">
                       <div className="card-body">
                         <h3>Sign Up Today</h3>
