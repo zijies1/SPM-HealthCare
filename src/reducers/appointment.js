@@ -30,10 +30,19 @@ const doctors = [
     charge:"90"
   }
 ];
-const times = ["9:00 to 10:00","10:00 to 11:00","11:00 to 12:00"];
+const times = [
+  "9:00 to 10:00",
+  "10:00 to 11:00",
+  "11:00 to 12:00",
+  "12:00 to 13:00",
+  "13:00 to 14:00",
+  "14:00 to 15:00",
+  "15:00 to 16:00",
+  "16:00 to 17:00"
+];
 const initialstate = {
-  fileds:{
-    type:"choose type",
+  fields:{
+    type:"Choose Type",
     time:times[0],
     message:""
   },
@@ -44,7 +53,7 @@ const initialstate = {
 export default (state =initialstate, action) => {
   switch (action.type) {
     case UPDATE_FIELD_APPOINTMENT:
-      return { ...state,fileds: {...state.fileds,[action.key]: action.value}};
+      return { ...state,fields: {...state.fields,[action.key]: action.value}};
     // ADMIN ONLY
     case GET_APPOINTMENTS:
       return { ...state,appointments:action.appointments};

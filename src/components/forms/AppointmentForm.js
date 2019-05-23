@@ -13,11 +13,13 @@ class AppointmentForm extends React.Component {
     this.changeType = ev =>{
       const docts = this.maybeChangeName(ev.target.value);
       this.props.onUpdateFieldAppointment(ev.target.value,"type");
-      this.props.onUpdateFieldAppointment(docts[0].name,"name");
-      this.onChangeCharge(docts[0].name);
+      if(docts.length != 0){
+        this.props.onUpdateFieldAppointment(docts[0].name,"name");
+        this.onChangeCharge(docts[0].name);
+      }
     };
     this.changeName = ev => {
-      const docts = this.maybeChangeName(this.props.appmt.fileds.type);
+      const docts = this.maybeChangeName(this.props.appmt.fields.type);
       this.props.onUpdateFieldAppointment(ev.target.value,"name");
       this.onChangeCharge(ev.target.value);
     }
@@ -27,11 +29,11 @@ class AppointmentForm extends React.Component {
       ev.preventDefault();
       var professional = null;
       this.props.professional.professionals.map(doc=>{
-        if(doc.name === this.props.appmt.fileds.name){
+        if(doc.name === this.props.appmt.fields.name){
           professional = doc;
         }
       });
-      this.props.onMakeAppointment(this.props.appmt.fileds,professional);
+      this.props.onMakeAppointment(this.props.appmt.fields,professional);
       this.props.sgMail(this.props.appmt,professional.email,"New Appointment");
       this.props.sgMail(this.props.appmt,this.props.appmt.userEmail,"New Appointment");
     };
@@ -59,7 +61,7 @@ class AppointmentForm extends React.Component {
   // render
   render() {
     const {times} = this.props.appmt;
-    const {type,name,time,message,charge} = this.props.appmt.fileds;
+    const {type,name,time,message,charge} = this.props.appmt.fields;
     const {types,professionals} = this.props.professional;
 
     console.log(professionals,types);
@@ -69,7 +71,8 @@ class AppointmentForm extends React.Component {
           <div className="col-md-12">
             <div className="form-group">
                 <label className="control-label">Type</label>
-                <select className="form-control" value={type} onChange={this.changeType} required>
+                <select className="form-control" onChange={this.changeType} required>
+                  <option value ={"Choose Type"}>Choose Type</option>
                   {types.map(type =>{
                     return (<option key={type}>{type}</option>)
                   })}
@@ -81,7 +84,7 @@ class AppointmentForm extends React.Component {
                 <label className="control-label">Doctor(s)</label>
                 <select className="form-control" value={name} onChange={this.changeName} required>
                   {professionals.map(doc=>{
-                    if(doc.type === this.props.appmt.fileds.type){
+                    if(doc.type === this.props.appmt.fields.type){
                       return (<option key={doc.name}>{doc.name}</option>)
                     }
                    })}

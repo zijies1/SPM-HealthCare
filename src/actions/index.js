@@ -26,8 +26,9 @@ export function sgMail(appmt,email,subject){
     from_name:"admin@spm.com",
     to_name:email,
     subject:subject,
-    appmt:appmt
+    appmt:appmt.fields
   }
+  console.log(templateParams);
   return {
     type: SEND_EMAIL,
     payload:emailjs.send("gmail","template_bONg9oEe",templateParams,"user_iBWZxTIHFpN0Ua2AFa3bB")

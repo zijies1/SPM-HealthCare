@@ -10,22 +10,22 @@ export default class Experts extends React.Component {
   render() {
     var one = {
       name:"Robert Koch",
-      position:"Oral care",
+      position:"Podiatrist",
       img:expert1
     };
     var two = {
       name:"Henry Gray",
-      position:"Eye care",
+      position:"Naturopath",
       img:expert2
     };
     var three = {
       name:"John Doe",
-      position:"Mental health",
+      position:"Chiropractor",
       img:expert3
     };
     var four = {
       name:"Theodor Billroth",
-      position:"Rehabilitation care",
+      position:"Chiropractor",
       img:expert4
     };
     return (

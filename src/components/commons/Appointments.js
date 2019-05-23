@@ -11,8 +11,7 @@ class Appointments extends React.Component {
       ev.preventDefault();
       const appmt = this.props.appointments[ev.target.id];
       this.props.onCancelAppoitment(ev.target.id,this.props.appointments[ev.target.id]);
-      this.props.sgMail(appmt,appmt.professionalEmail,"Appointment Cancellation");
-
+      this.props.sgMail({fields:appmt},appmt.professionalEmail,"Appointment Cancellation");
     }
   }
 
