@@ -25,11 +25,11 @@ class ProfessionalForm extends React.Component {
   }
 
   handleClose(){
-    this.props.onModal({ show: false });
+    this.props.onModal({key:"showModalProfessional",value: false});
   }
 
   handleShow() {
-    this.props.onModal({ show: true });
+    this.props.onModal({key:"showModalProfessional",value: true });
   }
 
   showLoading(){
@@ -109,7 +109,7 @@ class ProfessionalForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  showModal:state.auth.showModal,
+  showModal:state.professional.showModalProfessional,
   loading:state.auth.loading,
   newProfessional:state.professional.newProfessional,
   types:state.professional.types

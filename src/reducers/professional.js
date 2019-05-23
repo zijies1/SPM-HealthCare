@@ -2,7 +2,8 @@ import {
   GET_PROFESSIONALS,
   ADD_PROFESSIONAL,
   UPDATE_FIELD_PROFESSIONAL,
-  DELETE_PROFESSIONAL
+  DELETE_PROFESSIONAL,
+  SHOW_MODAL
 } from '../constants/actionTypes';
 
 const types = ["podiatrist", "naturopath", "chiropractor"];
@@ -14,6 +15,7 @@ const initialstate = {
     email:"",
     charge:""
   },
+  showModalProfessional:false,
   types:types
 };
 
@@ -30,6 +32,8 @@ export default (state =initialstate, action) => {
       // currently this is not working since refreshing page is activated
       return { ...state,professionals:[...state.professionals,action.professional]};
     case DELETE_PROFESSIONAL:
+    case SHOW_MODAL:
+      return {...state,[action.payload.key]:action.payload.value};
     default:
       return state;
   }

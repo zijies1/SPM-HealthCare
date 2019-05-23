@@ -10,7 +10,7 @@ class Professionals extends React.Component {
     console.log(this.props.professionals);
     this.showForm = () => ev => {
       ev.preventDefault();
-      this.props.onModal({ show: true });
+      this.props.onModal({key:"showModalProfessional",value:true });
     }
     this.handleSumbit = () => ev =>{
       ev.preventDefault();

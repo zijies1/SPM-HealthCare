@@ -13,7 +13,6 @@ import {
  } from "./constants/actionTypes.js";
 import firebase from "./reducers/firebase";
 
-
 // render the main component
 function render(){
   ReactDOM.render(
