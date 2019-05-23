@@ -5,9 +5,17 @@ import {onCancelAppoitment,sgMail} from "../../actions/index.js";
 
 class Appointments extends React.Component {
 
+
   constructor(props){
     super(props);
-    this.handleSumbit = () => ev =>{
+    this.renderButton = () => {
+      if(this.props.role){
+        return(<div></div>);
+      }else{
+        return(<button href="#" className="btn btn-primary">Cancel</button>)
+      }
+    }
+    this.handleSumbit = () => ev => {
       ev.preventDefault();
       const appmt = this.props.appointments[ev.target.id];
       this.props.onCancelAppoitment(ev.target.id,this.props.appointments[ev.target.id]);
@@ -17,6 +25,7 @@ class Appointments extends React.Component {
 
   renderAppmt(){
     var cards = [];
+    console.log(this.props.appointments);
     for (var key in this.props.appointments){
       const appmt = this.props.appointments[key];
       cards.push(
@@ -57,7 +66,7 @@ class Appointments extends React.Component {
            </div>
           </div>
           <hr/>
-          <button href="#" className="btn btn-primary">Cancel</button>
+          {this.renderButton()}
          </div>
        </div>
        </form>
