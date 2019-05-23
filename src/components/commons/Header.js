@@ -21,33 +21,54 @@ class Header extends React.Component {
   renderLogin(){
     if(this.props.auth.user.role){
       return(
-        <li className="nav-item dropdown">
-          <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {this.props.auth.email}
-          </div>
-          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <button className="dropdown-item" onClick={this.props.logout} >Logout</button>
-          </div>
-        </li>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link to="/"><div className="nav-link">Home</div></Link>
+          </li>
+          <li className="nav-item dropdown">
+            <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {this.props.auth.email}
+            </div>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <button className="dropdown-item" onClick={this.props.logout} >Logout</button>
+            </div>
+          </li>
+        </ul>
       )
     }else if(this.props.auth.loggedIn){
       return(
-        <li className="nav-item dropdown">
-          <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {this.props.auth.email}
-          </div>
-          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <Link to="/profile"><div className="dropdown-item">Account</div></Link>
-            <div className="dropdown-divider"></div>
-            <button className="dropdown-item" onClick={this.props.logout} >Logout</button>
-          </div>
-        </li>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link to="/"><div className="nav-link">Home</div></Link>
+          </li>
+          <li className="nav-item dropdown">
+            <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {this.props.auth.email}
+            </div>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <Link to="/profile"><div className="dropdown-item">Account</div></Link>
+              <div className="dropdown-divider"></div>
+              <button className="dropdown-item" onClick={this.props.logout} >Logout</button>
+            </div>
+          </li>
+          <li className="nav-item">
+            <div className="btn btn-primary" onClick={this.makeAppointment()}>Make An Appointment</div>
+          </li>
+        </ul>
       )
     }
     return(
-      <li className="nav-item">
-        <Link to="/login"><div className="nav-link">Login</div></Link>
-      </li>
+      <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+          <Link to="/"><div className="nav-link">Home</div></Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/login"><div className="nav-link">Login</div></Link>
+        </li>
+        <li className="nav-item">
+          <div className="btn btn-primary" onClick={this.makeAppointment()}>Make An Appointment</div>
+        </li>
+      </ul>
     )
   }
 
@@ -60,15 +81,7 @@ class Header extends React.Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarCollapse">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to="/"><div className="nav-link">Home</div></Link>
-              </li>
               {this.renderLogin()}
-              <li className="nav-item">
-                <div className="btn btn-primary" onClick={this.makeAppointment()}>Make An Appointment</div>
-              </li>
-            </ul>
           </div>
         </div>
       </nav>
