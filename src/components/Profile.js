@@ -41,7 +41,7 @@ class Profile extends React.Component {
     const name2 = itemClassName + this.props.profile.Appointments;
     return (
       <div>
-        <Header/>
+        <Header history={this.props.history}/>
         <hr className="mt-100"/>
         <Banner section = {this.props.profile.show}/>
         <div className="mb-5 fadeIn">

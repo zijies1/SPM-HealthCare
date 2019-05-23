@@ -1,11 +1,22 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { logout } from "../../actions/index.js";
+import { logout,onModal } from "../../actions/index.js";
 
 
 class Header extends React.Component {
-  // render
+
+  constructor(props){
+    super(props);
+    this.makeAppointment = () => ev =>{
+      ev.preventDefault();
+      if(!this.props.auth.loggedIn){
+        this.props.onModal({show:true,msg:"You need to sign in first"} );
+      }else{
+        this.props.history.push("/appointment");
+      }
+    }
+  }
 
   renderLogin(){
     if(this.props.auth.user.role){
@@ -27,7 +38,6 @@ class Header extends React.Component {
           </div>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <Link to="/profile"><div className="dropdown-item">Account</div></Link>
-            <Link to="/appointment"><div className="dropdown-item">Make An Appointment</div></Link>
             <div className="dropdown-divider"></div>
             <button className="dropdown-item" onClick={this.props.logout} >Logout</button>
           </div>
@@ -55,6 +65,9 @@ class Header extends React.Component {
                 <Link to="/"><div className="nav-link">Home</div></Link>
               </li>
               {this.renderLogin()}
+              <li className="nav-item">
+                <div className="btn btn-primary" onClick={this.makeAppointment()}>Make An Appointment</div>
+              </li>
             </ul>
           </div>
         </div>
@@ -69,4 +82,4 @@ const mapStateToProps = state => ({
  });
 
 
-export default connect(mapStateToProps, {logout})(Header);
+export default connect(mapStateToProps, {logout,onModal})(Header);

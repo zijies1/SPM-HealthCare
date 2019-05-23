@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { onUpdateField } from "../actions/index.js";
 import About from "./commons/About";
 import Banner from "./commons/Banner";
 import Header from "./commons/Header";
@@ -17,7 +16,7 @@ class Appointment extends React.Component {
 
     return (
       <div>
-        <Header/>
+        <Header history={this.props.history}/>
         <hr className="mt-100"/>
         <Banner section = "Appointment"/>
         <div className=" container text-dark pb-5 fadeIn">

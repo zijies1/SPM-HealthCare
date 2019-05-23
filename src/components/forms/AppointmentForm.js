@@ -35,7 +35,7 @@ class AppointmentForm extends React.Component {
       });
       this.props.onMakeAppointment(this.props.appmt.fields,professional);
       this.props.sgMail(this.props.appmt,professional.email,"New Appointment");
-      this.props.sgMail(this.props.appmt,this.props.appmt.userEmail,"New Appointment");
+      this.props.sgMail(this.props.appmt,this.props.email,"New Appointment");
     };
   }
 
@@ -126,7 +126,8 @@ class AppointmentForm extends React.Component {
 
 const mapStateToProps = state => ({
   appmt:state.appointment,
-  professional:state.professional
+  professional:state.professional,
+  email:state.auth.user.email
  });
 
 

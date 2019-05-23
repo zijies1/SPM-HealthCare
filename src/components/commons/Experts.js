@@ -1,9 +1,6 @@
 import React from "react";
 import Expert from "./Expert";
-import expert1 from "../../media/img/d1.jpeg";
-import expert2 from "../../media/img/d2.jpeg";
-import expert3 from "../../media/img/d3.jpeg";
-import expert4 from "../../media/img/d4.jpeg";
+import expert1 from "../../media/img/profilePicture.jpg";
 
 export default class Experts extends React.Component {
   // render
@@ -16,17 +13,17 @@ export default class Experts extends React.Component {
     var two = {
       name:"Henry Gray",
       position:"Naturopath",
-      img:expert2
+      img:expert1
     };
     var three = {
       name:"John Doe",
       position:"Chiropractor",
-      img:expert3
+      img:expert1
     };
     var four = {
       name:"Theodor Billroth",
       position:"Chiropractor",
-      img:expert4
+      img:expert1
     };
     return (
       <section id="authors" className="py-5 text-center bg-light">

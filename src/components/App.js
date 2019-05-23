@@ -11,13 +11,14 @@ import AdminPage from "./AdminPage";
 import HomeLoading from "./commons/HomeLoading";
 import Loading from "./commons/Loading";
 import ErrorModal from "./commons/ErrorModal";
+import { createBrowserHistory } from 'history';
 
 class App extends React.Component {
 
   render() {
     return (
       <div>
-        <Router>
+        <Router history={createBrowserHistory}>
             <div>
               <Route exact path="/" component={Home}/>
               <Route path="/login" component={Login}/>

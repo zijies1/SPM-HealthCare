@@ -45,7 +45,7 @@ class AdminPage extends React.Component {
     const name2 = itemClassName + this.props.profile.Appointments;
     return (
       <div>
-        <Header/>
+        <Header history={this.props.history}/>
         <hr className="mt-5"/>
         <div className="mt-5 fadeIn">
           <div className="mt-5 container text-dark">

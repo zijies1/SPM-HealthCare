@@ -20,7 +20,7 @@ class Home extends React.Component {
     var backgroundImage3 = "https://www.hospitalityinhealthcare.com/wp-content/uploads/2017/03/1-WELCOME-IMAGE_medical-personnel-consult.jpg";
     return (
       <div>
-        <Header/>
+        <Header history={this.props.history}/>
         <header id="home-section" style = {{ "backgroundImage": `url(${backgroundImage3})`}}>
             <div className="dark-overlay">
               <div className="home-inner container">

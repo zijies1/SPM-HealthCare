@@ -24,6 +24,7 @@ import * as emailjs from "emailjs-com";
 export function sgMail(appmt,email,subject){
   var templateParams = {
     from_name:"admin@spm.com",
+    to_email:email,
     to_name:email,
     subject:subject,
     appmt:appmt.fields
