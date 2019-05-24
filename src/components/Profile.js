@@ -28,7 +28,7 @@ class Profile extends React.Component {
     if(this.props.profile.show === pro){
       return(<PorfileForm/>)
     }else{
-      return(< Appointments appointments={this.props.appmts}/>)
+      return(< Appointments appmts={this.props.appmts}/>)
     }
 
   }

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import {
   onUpdateFieldAppointment,
   onMakeAppointment,
-  sgMail
+  sgMail,
+  onChangeProfileView
 } from "../../actions/index.js";
 
 
@@ -36,6 +37,9 @@ class AppointmentForm extends React.Component {
       this.props.onMakeAppointment(this.props.appmt.fields,professional);
       this.props.sgMail(this.props.appmt,professional.email,"New Appointment");
       this.props.sgMail(this.props.appmt,this.props.email,"New Appointment");
+      this.props.onChangeProfileView("Appointments");
+      this.props.history.push("/profile");
+
     };
   }
 
@@ -134,4 +138,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps,{
   onUpdateFieldAppointment,
   onMakeAppointment,
-  sgMail})(AppointmentForm);
+  sgMail,
+  onChangeProfileView})(AppointmentForm);

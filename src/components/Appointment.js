@@ -26,7 +26,7 @@ class Appointment extends React.Component {
                        <div className="well-title">
                            <h2>Book an Appointment</h2>
                        </div>
-                      <AppointmentForm/>
+                      <AppointmentForm history={this.props.history}/>
                    </div>
                </div>
                <div className="col-md-6">

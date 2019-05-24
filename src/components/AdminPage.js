@@ -30,7 +30,7 @@ class AdminPage extends React.Component {
     if(this.props.profile.show === pro){
       return(< Professionals professionals={this.props.professionals}/>)
     }else{
-      return(< Appointments appointments={this.props.appmts} role ={"admin"}/>)
+      return(< Appointments appmts={this.props.appmts} role ={"admin"}/>)
     }
 
   }

@@ -69,15 +69,19 @@ export default (state =initialstate, action) => {
     case CANCEL_APPOINTMENT:
       return {...state,
               user:{...state.user,
-                    appointments:{[action.key]:undefined,...state.user.appointments}
+                    appointments:{
+                        ...state.user.appointments,
+                        [action.key]:null
+                      }
                     }
               };
     case MAKE_APPOINTMENT:
-      // currently this is not working since refreshing page is activated
-      console.log(MAKE_APPOINTMENT,action);
       return {...state,
               user:{...state.user,
-                    appointments:{[action.key]:action.appointment,...state.user.appointments}
+                    appointments:{
+                        ...state.user.appointments,
+                        [action.key]:action.appmt
+                      }
                     }
               };
     default:

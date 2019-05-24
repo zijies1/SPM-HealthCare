@@ -72,8 +72,8 @@ const promiseMiddleware = store => next => action => {
               values.push(getValues[key]);
             }
             store.dispatch({ type:GET_PROFESSIONALS, doctors:values.reverse()});
-            store.dispatch({ type: LOGIN, payload:action.snapshot.val()});
-            store.dispatch({ type: ASYNC_END});
+            store.dispatch({ type:LOGIN, payload:action.snapshot.val()});
+            store.dispatch({ type:ASYNC_END});
             break;
           case GET_APPOINTMENTS:
             const appmts = res.val();
@@ -81,24 +81,26 @@ const promiseMiddleware = store => next => action => {
             store.dispatch({ type: ASYNC_END});
             break;
           case MAKE_APPOINTMENT:
-            console.log(action.type,MAKE_APPOINTMENT,action.appmt);
+            store.dispatch({ type:MAKE_APPOINTMENT,appmt:action.appmt,key:action.key});
             break;
           case CANCEL_APPOINTMENT:
-            console.log(action.type,CANCEL_APPOINTMENT);
+            store.dispatch({ type:CANCEL_APPOINTMENT,appmts:action.appmts,key:action.key});
             break;
           case SEND_EMAIL:
-            console.log(SEND_EMAIL);
-            store.dispatch({ type: ASYNC_END});
-            window.location.reload();
+            store.dispatch({ type:ASYNC_END});
+            store.dispatch({ type:SHOW_MODAL, payload:{show:true,msg:"Success!"} });
+            break;
           case DELETE_PROFESSIONAL:
-            store.dispatch({ type: ASYNC_END});
+            store.dispatch({ type:ASYNC_END});
             window.location.reload();
+            break;
           case LOGOUT:
-            store.dispatch({ type: ASYNC_END});
+            store.dispatch({ type:ASYNC_END});
             window.location.reload();
+            break;
           default:
             action.payload = null;
-            store.dispatch({ type: ASYNC_END});
+            store.dispatch({ type:ASYNC_END});
             store.dispatch(action);
             break;
         }

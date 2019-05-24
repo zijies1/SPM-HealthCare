@@ -149,7 +149,7 @@ export function onChangeProfileView(value){
   };
 }
 
-export function onCancelAppoitment(key,appmt){
+export function onCancelAppoitment(key,appmt,appmts){
   var updates = {};
   var uid = firebase.auth().currentUser.uid;
   updates['/appointments/' + key] = null;
@@ -158,7 +158,8 @@ export function onCancelAppoitment(key,appmt){
     type: CANCEL_APPOINTMENT,
     payload:firebase.database().ref().update(updates),
     key,
-    email:appmt.professionalEmail
+    email:appmt.professionalEmail,
+    appmts
   };
 }
 
