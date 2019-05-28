@@ -94,6 +94,9 @@ const promiseMiddleware = store => next => action => {
             store.dispatch({ type:ASYNC_END});
             window.location.reload();
             break;
+          case UPDATE_PASSWORD:
+            store.dispatch({ type:LOGOUT});
+            break;
           case LOGOUT:
             store.dispatch({ type:ASYNC_END});
             window.location.reload();

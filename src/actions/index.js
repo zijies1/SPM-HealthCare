@@ -104,8 +104,9 @@ export function onUpdateProfile(user){
 
 export function onUpdatePassword(value){
   var user = firebase.auth().currentUser;
+  console.log(user);
   return {
-    type: UPDATE_PROFILE,
+    type:  UPDATE_PASSWORD,
     payload: user.updatePassword(value)
   };
 }

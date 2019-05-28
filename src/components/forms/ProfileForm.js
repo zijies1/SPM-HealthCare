@@ -23,7 +23,6 @@ class ProfileForm extends React.Component {
     this.submitForm2 = () => ev => {
       ev.preventDefault();
       this.props.onUpdatePassword(this.props.user.password);
-      this.props.logout();
     };
   }
 
