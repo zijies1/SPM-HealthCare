@@ -1,6 +1,6 @@
 # SPM-HealthCare
 
-This is a appointment making web application for health-care centers.
+This is a appointment making web application for health-care centers implemented using React, Redux and firebase
 
 How to run the application:
 ```
