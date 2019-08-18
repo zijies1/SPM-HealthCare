@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import style from "./style.css";
-import logo from "../media/img/logo1.svg";
+import logo from "../media/img/logo1.png";
 import { onSubmit,onUpdateField } from "../actions/index.js";
 
 import {
@@ -69,10 +69,6 @@ class Login extends React.Component {
             />
             {this.showLoading()}
           </form>
-
-          <div id="formFooter">
-            <a className="underlineHover" href="#">Forgot Password?</a>
-          </div>
 
         </div>
     </div>
