@@ -19,9 +19,8 @@ import {
   SEND_EMAIL
 } from '../constants/actionTypes';
 import firebase from "../reducers/firebase.js";
-import axios from "axios";
 
-const root = "http://127.0.0.1:5000/";
+const root = "http://35.189.33.72:56733/";
 const headers = {
   "Content-Type":"application/json"
 };
