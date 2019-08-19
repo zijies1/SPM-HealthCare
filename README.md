@@ -13,10 +13,12 @@ password: 123456
 4. Logged in Customers can update their Personal_Information.
 5. Logged in Customers must be able to update their Personal_Information.
 6. Logged in Customers can create a booking request, referred to as an
-Appointment_Booking. 
+Appointment_Booking and an email will be sent to the selected professional.
 7. Logged in Customers can view or cancel their appointments. If a Customer
 cancels an appointment, an email will be sent to the Health-care Professional.
 8. The Admin user can view a list of all appointment requests.
+
+Note: Emails may not be sent since it is deactivated due to security reasons
 
 How to run the application:
 ```
