@@ -9,7 +9,7 @@ What this web application can do is listed as followings:
 username: admin@spm.com
 password: 123456
 2. The Admin user can add Health-care Professionals
-3. Customers can register can login to the system
+3. Customers can register and login to the system
 4. Logged in Customers can update their Personal_Information.
 5. Logged in Customers must be able to update their Personal_Information.
 6. Logged in Customers can create a booking request, referred to as an
